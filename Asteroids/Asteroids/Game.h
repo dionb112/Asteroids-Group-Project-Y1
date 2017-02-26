@@ -30,9 +30,19 @@ public:
 private:
 	void update();
 	void processEvents();
+	void processSplashEvents();
+	void processMainMenuEvents();
+	void processLevelSelectEvents();
+	void processHelpEvents();
+	void processUpgradeEvents();
 	void render();
 
+
+
 	sf::RenderWindow m_window;
+
+	MenuScreen currScreen;
+	int m_licenseTime;
 };
 
 
