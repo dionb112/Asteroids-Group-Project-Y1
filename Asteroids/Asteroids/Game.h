@@ -6,6 +6,12 @@
 #include <SFML\Window.hpp>
 #include <SFML\Main.hpp>
 #include <SFML\Audio.hpp>
+#include "License.h"
+#include "Splash.h"
+#include "MainMenu.h"
+#include "LevelSelect.h"
+#include "Help.h"
+#include "Upgrade.h"
 
 /// <summary>
 /// our game states
@@ -28,6 +34,8 @@ public:
 	void run();
 
 private:
+	void loadContent();
+	void init();
 	void update();
 	void processEvents();
 	void processSplashEvents();
@@ -37,12 +45,18 @@ private:
 	void processUpgradeEvents();
 	void render();
 
-
-
 	sf::RenderWindow m_window;
-
+	sf::Font m_font;
 	MenuScreen currScreen;
 	int m_licenseTime;
+
+	License license;
+	Splash splash;
+	MainMenu mainMenu;
+	LevelSelect levelSelect;
+	Help help;
+	Upgrade upgrade;
+
 };
 
 

@@ -1,19 +1,39 @@
 #include "Game.h"
 
-Game::Game() :
-	m_window(sf::VideoMode(800, 480), "Asteroids")
-	,currScreen(MenuScreen::License)
-	,m_licenseTime(260)
+Game::Game() : m_window(sf::VideoMode(800, 480), "Asteroids")
 {
-
 }
 
 Game::~Game()
 {
 }
 
+
+void Game::loadContent()
+{
+	if (!m_font.loadFromFile("ASSETS/FONTS/BebasNeue.otf"))
+	{
+		std::cout << "Error loading font" << std::endl;
+	}
+}
+
+void Game::init()
+{
+	currScreen = (MenuScreen::License);
+	m_licenseTime = 260;
+	license.init(m_font);
+	splash.init(m_font);
+	mainMenu.init(m_font);
+	levelSelect.init(m_font);
+	help.init(m_font);
+	upgrade.init(m_font);
+
+}
+
 void Game::run()
 {
+	loadContent();
+	init();
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	sf::Time timePerFrame = sf::seconds(1.0f / 60.0f);
@@ -36,11 +56,13 @@ void Game::processEvents()
 	sf::Event event;
 	while (m_window.pollEvent(event))
 	{
-		if (sf::Event::Closed == event.type || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-		{
-			m_window.close();
+		if (currScreen != MenuScreen::License)
+		{ 
+			if (sf::Event::Closed == event.type || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				m_window.close();
+			}
 		}
-
 		if (currScreen == MenuScreen::Splash)
 		{
 			processSplashEvents();
@@ -154,27 +176,27 @@ void Game::render()
 
 	if (currScreen == MenuScreen::License)
 	{
-		//m_license.render();
+		license.render(m_window);
 	}
 	if (currScreen == MenuScreen::Splash)
 	{
-		//m_splash.render();
+		splash.render(m_window);
 	}
 	if (currScreen == MenuScreen::MainMenu)
 	{
-		//m_mainMenu.render();
+		mainMenu.render(m_window);
 	}
 	if (currScreen == MenuScreen::LevelSelect)
 	{
-		//m_levelSelect.render();
+		levelSelect.render(m_window);
 	}
 	if (currScreen == MenuScreen::Help)
 	{
-		//m_help.render();
+		help.render(m_window);
 	}
 	if (currScreen == MenuScreen::Upgrade)
 	{
-		//m_upgrade.render();
+		upgrade.render(m_window);
 	}
 	
 	m_window.display();
