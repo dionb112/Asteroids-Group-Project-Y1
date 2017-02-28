@@ -19,6 +19,7 @@ void Game::loadContent()
 
 void Game::init()
 {
+	std::cout << "Dion branch" << std::endl;
 	currScreen = (MenuScreen::License);
 	m_licenseTime = 260;
 	license.init(m_font);
