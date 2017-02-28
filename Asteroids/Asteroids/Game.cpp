@@ -28,6 +28,7 @@ void Game::init()
 	help.init(m_font);
 	upgrade.init(m_font);
 
+	std::cout << "tiddlywinks" << std::endl;
 }
 
 void Game::run()
