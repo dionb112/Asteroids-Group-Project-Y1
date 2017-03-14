@@ -12,6 +12,7 @@
 #include "LevelSelect.h"
 #include "Help.h"
 #include "Upgrade.h"
+#include "Level.h"
 
 /// <summary>
 /// our game states
@@ -23,7 +24,8 @@ enum class MenuScreen
 	MainMenu,
 	LevelSelect,
 	Help,
-	Upgrade
+	Upgrade,
+	Level
 };
 
 class Game
@@ -43,6 +45,7 @@ private:
 	void processLevelSelectEvents();
 	void processHelpEvents();
 	void processUpgradeEvents();
+	void processLevelEvents();
 	void render();
 
 	sf::RenderWindow m_window;
@@ -56,6 +59,7 @@ private:
 	LevelSelect levelSelect;
 	Help help;
 	Upgrade upgrade;
+	Level level;
 
 };
 

@@ -28,6 +28,7 @@ void Game::init()
 	levelSelect.init(m_font);
 	help.init(m_font);
 	upgrade.init(m_font);
+	level.init();
 
 	std::cout << "tiddlywinks" << std::endl;
 }
@@ -85,6 +86,10 @@ void Game::processEvents()
 		{
 			processUpgradeEvents();
 		}
+		if (currScreen == MenuScreen::Level)
+		{
+			processLevelEvents();
+		}
 	}
 }
 
@@ -120,6 +125,10 @@ void Game::processLevelSelectEvents()
 	{
 		currScreen = MenuScreen::MainMenu;
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+	{
+		currScreen = MenuScreen::Level;
+	}
 }
 
 void Game::processHelpEvents()
@@ -131,6 +140,14 @@ void Game::processHelpEvents()
 }
 
 void Game::processUpgradeEvents()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		currScreen = MenuScreen::MainMenu;
+	}
+}
+
+void Game::processLevelEvents()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
@@ -150,25 +167,10 @@ void Game::update()
 
 		std::cout << "You are on the License screen" << std::endl;
 	}
-	if (currScreen == MenuScreen::Splash)
+
+	if (currScreen == MenuScreen::Level)
 	{
-		std::cout << "You are on the Splash screen" << std::endl;
-	}
-	if (currScreen == MenuScreen::MainMenu)
-	{
-		std::cout << "You are on the MainMenu screen" << std::endl;
-	}
-	if (currScreen == MenuScreen::LevelSelect)
-	{
-		std::cout << "You are on the LevelSelect screen" << std::endl;
-	}
-	if (currScreen == MenuScreen::Help)
-	{
-		std::cout << "You are on the Help screen" << std::endl;
-	}
-	if (currScreen == MenuScreen::Upgrade)
-	{
-		std::cout << "You are on the Upgrade screen" << std::endl;
+		std::cout << "You are on the Level screen" << std::endl;
 	}
 }
 
@@ -200,6 +202,10 @@ void Game::render()
 	{
 		upgrade.render(m_window);
 	}
-	
+	if (currScreen == MenuScreen::Level)
+	{
+		level.render(m_window);
+	}
+
 	m_window.display();
 }
