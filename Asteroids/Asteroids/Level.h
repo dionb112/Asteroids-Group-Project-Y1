@@ -9,5 +9,8 @@ private:
 	Player m_player;
 public:
 	void init();
+	void update();
+	void movePlayer(bool forward);
+	void rotatePlayer(double rotate);
 	void render(sf::RenderWindow &window);
 };

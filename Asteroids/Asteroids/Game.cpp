@@ -19,9 +19,8 @@ void Game::loadContent()
 
 void Game::init()
 {
-	std::cout << "Dion branch" << std::endl;
 	currScreen = (MenuScreen::License);
-	m_licenseTime = 260;
+	m_licenseTime = 0; //set back to 260 when finished
 	license.init(m_font);
 	splash.init(m_font);
 	mainMenu.init(m_font);
@@ -29,8 +28,6 @@ void Game::init()
 	help.init(m_font);
 	upgrade.init(m_font);
 	level.init();
-
-	std::cout << "tiddlywinks" << std::endl;
 }
 
 void Game::run()
@@ -66,30 +63,30 @@ void Game::processEvents()
 				m_window.close();
 			}
 		}
-		if (currScreen == MenuScreen::Splash)
-		{
-			processSplashEvents();
-		}
-		if (currScreen == MenuScreen::MainMenu)
-		{
-			processMainMenuEvents();
-		}
-		if (currScreen == MenuScreen::LevelSelect)
-		{
-			processLevelSelectEvents();
-		}
-		if (currScreen == MenuScreen::Help)
-		{
-			processHelpEvents();
-		}
-		if (currScreen == MenuScreen::Upgrade)
-		{
-			processUpgradeEvents();
-		}
-		if (currScreen == MenuScreen::Level)
-		{
-			processLevelEvents();
-		}
+	}
+	if (currScreen == MenuScreen::Splash)
+	{
+		processSplashEvents();
+	}
+	if (currScreen == MenuScreen::MainMenu)
+	{
+		processMainMenuEvents();
+	}
+	if (currScreen == MenuScreen::LevelSelect)
+	{
+		processLevelSelectEvents();
+	}
+	if (currScreen == MenuScreen::Help)
+	{
+		processHelpEvents();
+	}
+	if (currScreen == MenuScreen::Upgrade)
+	{
+		processUpgradeEvents();
+	}
+	if (currScreen == MenuScreen::Level)
+	{
+		processLevelEvents();
 	}
 }
 
@@ -153,6 +150,22 @@ void Game::processLevelEvents()
 	{
 		currScreen = MenuScreen::MainMenu;
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		level.movePlayer(true);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		level.movePlayer(false);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		level.rotatePlayer(0.01);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		level.rotatePlayer(-0.01);
+	}
 }
 
 void Game::update()
@@ -164,13 +177,11 @@ void Game::update()
 		{
 			currScreen = MenuScreen::Splash;
 		}
-
-		std::cout << "You are on the License screen" << std::endl;
 	}
 
 	if (currScreen == MenuScreen::Level)
 	{
-		std::cout << "You are on the Level screen" << std::endl;
+		level.update();
 	}
 }
 

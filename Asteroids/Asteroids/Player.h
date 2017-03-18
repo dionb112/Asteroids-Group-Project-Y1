@@ -1,5 +1,10 @@
 #pragma once
+
+#include <iostream>
 #include "SFML/Graphics.hpp"
+
+const int PI = 3.14159265359;
+
 class Player
 {
 public:
@@ -7,17 +12,20 @@ public:
 	~Player();
 
 	void init();
+	void update();
 	void render(sf::RenderWindow &window);
 	sf::CircleShape getBody();
-	double getRotation();
-	void rotate(int rotate);
 
+	void move();
+	double getRotation();
+	void rotate(double rotate);
+	void friction();
+
+	void screenWrap();
 
 	sf::CircleShape m_body;
 	double m_rotation;
-
 	sf::Vector2f m_velocity;
-	double m_speed;
 	double m_acceleration;
-	double m_decelaration;
+	sf::Vector2f m_accelerationVector;
 };
