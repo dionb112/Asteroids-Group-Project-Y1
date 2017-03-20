@@ -18,13 +18,14 @@ public:
 
 	void move();
 	double getRotation();
-	void rotate(double rotate);
+	void rotate(bool turnLeft);
 	void friction();
 
 	void screenWrap();
 
 	sf::CircleShape m_body;
 	double m_rotation;
+	double m_turnRate;
 	sf::Vector2f m_velocity;
 	double m_acceleration;
 	sf::Vector2f m_accelerationVector;

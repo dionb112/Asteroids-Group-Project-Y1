@@ -10,7 +10,7 @@ private:
 public:
 	void init();
 	void update();
-	void movePlayer(bool forward);
-	void rotatePlayer(double rotate);
+	void movePlayer();
+	void rotatePlayer(bool rotateLeft);
 	void render(sf::RenderWindow &window);
 };

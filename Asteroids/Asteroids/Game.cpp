@@ -152,19 +152,15 @@ void Game::processLevelEvents()
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		level.movePlayer(true);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-	{
-		level.movePlayer(false);
+		level.movePlayer();
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		level.rotatePlayer(0.01);
+		level.rotatePlayer(true);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		level.rotatePlayer(-0.01);
+		level.rotatePlayer(false);
 	}
 }
 

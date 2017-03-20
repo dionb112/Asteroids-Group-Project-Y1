@@ -14,6 +14,7 @@ void Player::init()
 	m_body.setRadius(10);
 	m_body.setFillColor(sf::Color::Green);
 	m_velocity = sf::Vector2f(0, 0);
+	m_turnRate = 0.1;
 	m_acceleration = 0.001;
 	m_rotation = 0;
 }
@@ -83,7 +84,14 @@ double Player::getRotation()
 	return m_rotation;
 }
 
-void Player::rotate(double rotate)
+void Player::rotate(bool turnLeft)
 {
-	m_rotation += rotate;
+	if (turnLeft)
+	{
+		m_rotation -= m_turnRate;
+	}
+	if (!turnLeft)
+	{
+		m_rotation += m_turnRate;
+	}
 }

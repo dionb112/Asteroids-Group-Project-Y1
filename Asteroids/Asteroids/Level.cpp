@@ -10,14 +10,14 @@ void Level::update()
 	m_player.update();
 }
 
-void Level::movePlayer(bool forward)
+void Level::movePlayer()
 {
-	m_player.move(forward);
+	m_player.move();
 }
 
-void Level::rotatePlayer(double rotate)
+void Level::rotatePlayer(bool rotateLeft)
 {
-	m_player.rotate(rotate);
+	m_player.rotate(rotateLeft);
 }
 
 void Level::render(sf::RenderWindow & window)
