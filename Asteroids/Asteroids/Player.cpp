@@ -10,6 +10,21 @@ Player::~Player()
 
 void Player::init()
 {
+	if (!m_playerTexture.loadFromFile("ASSETS\\IMAGES\\smallplayerstrip064.png"))
+	{
+		std::cout << "problem loading WAV file";
+	}
+
+	m_playerSprite.setTexture(m_playerTexture);
+	m_playerRect.width = 64;
+	m_playerRect.height = 64;
+	m_playerRect.top = 0;
+	m_playerRect.left = 0;
+	m_playerSprite.setTextureRect(m_playerRect);
+
+	m_playerSprite.setOrigin(32, 32);
+	m_playerSprite.setPosition(400, 240);
+
 	m_body.setPosition(sf::Vector2f(400, 280));
 	m_body.setRadius(10);
 	m_body.setFillColor(sf::Color::Green);
@@ -21,10 +36,9 @@ void Player::init()
 
 void Player::update()
 {
-	m_body.move(m_velocity);
+	m_playerSprite.move(m_velocity);
 	friction();
 	screenWrap();
-	std::cout << m_rotation << std::endl;
 }
 
 void Player::friction()
@@ -35,45 +49,55 @@ void Player::friction()
 
 void Player::screenWrap()
 {
-	if (m_body.getPosition().x < 0)
+	if (m_playerSprite.getPosition().x < 0)
 	{
-		m_body.setPosition(800, m_body.getPosition().y);
+		m_playerSprite.setPosition(800, m_playerSprite.getPosition().y);
 	}
-	if (m_body.getPosition().x > 800)
+	if (m_playerSprite.getPosition().x > 800)
 	{
-		m_body.setPosition(0, m_body.getPosition().y);
+		m_playerSprite.setPosition(0, m_playerSprite.getPosition().y);
 	}
-	if (m_body.getPosition().y < 0)
+	if (m_playerSprite.getPosition().y < 0)
 	{
-		m_body.setPosition(m_body.getPosition().x, 480);
+		m_playerSprite.setPosition(m_playerSprite.getPosition().x, 480);
 	}
-	if (m_body.getPosition().y > 480)
+	if (m_playerSprite.getPosition().y > 480)
 	{
-		m_body.setPosition(m_body.getPosition().x, 0);
+		m_playerSprite.setPosition(m_playerSprite.getPosition().x, 0);
 	}
 }
 
 void Player::render(sf::RenderWindow & window)
 {
-	window.draw(m_body);
+	window.draw(m_playerSprite);
 }
 
-sf::CircleShape Player::getBody()
+sf::Sprite Player::getBody()
 {
-	return m_body;
+	return m_playerSprite;
 }
 
 void Player::move()
 {
-	
-	const float cos = std::cos(m_rotation * PI / 180);
-	const float sin = std::sin(m_rotation * PI / 180);
-	const double x = (0 * cos) - (-1 * sin);
-	const double y = (0 * sin) + (-1 * cos);
+	//Note:
+	//Sin and cos are not giving the appropriate values.
+	//The vakues are close to what they should be but
+	//after rotating the ship around 3 or 4 times you 
+	//start to see a major difference in what it should be
+	//I'm still not sure why this is happening.
+	//eg: for a rotation of 1080 (3 spins) the results are
+	//x: -0.750987 and y : -0.660317
+	//whereas it should be
+	//x: 0 and y: 1
+	double x = std::sin(m_rotation * PI / 180.0);
+	double y = -std::cos(m_rotation * PI / 180.0);
+
 	m_accelerationVector = sf::Vector2f(x, y);
 	std::cout << "x: " << x << "y: " << y << std::endl;
+	std::cout << m_rotation << std::endl;
 
-	//m_velocity.y += m_acceleration;
+
+	//m_velocity += m_acceleration;
 	m_velocity.y += m_accelerationVector.y * m_acceleration;
 	m_velocity.x += m_accelerationVector.x * m_acceleration;
 
@@ -89,9 +113,11 @@ void Player::rotate(bool turnLeft)
 	if (turnLeft)
 	{
 		m_rotation -= m_turnRate;
+		m_playerSprite.setRotation(m_rotation);
 	}
 	if (!turnLeft)
 	{
 		m_rotation += m_turnRate;
+		m_playerSprite.setRotation(m_rotation);
 	}
 }
