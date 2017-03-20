@@ -15,7 +15,7 @@ void Player::init()
 	m_body.setFillColor(sf::Color::Green);
 	m_velocity = sf::Vector2f(0, 0);
 	m_turnRate = 0.1;
-	m_acceleration = 0.001;
+	m_acceleration = 0.01;
 	m_rotation = 0;
 }
 
@@ -74,8 +74,8 @@ void Player::move()
 	std::cout << "x: " << x << "y: " << y << std::endl;
 
 	//m_velocity.y += m_acceleration;
-	m_velocity.y += m_accelerationVector.y * 0.01;
-	m_velocity.x += m_accelerationVector.x * 0.01;
+	m_velocity.y += m_accelerationVector.y * m_acceleration;
+	m_velocity.x += m_accelerationVector.x * m_acceleration;
 
 }
 
