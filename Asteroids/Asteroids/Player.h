@@ -4,7 +4,7 @@
 #include <math.h>
 #include "SFML/Graphics.hpp"
 
-const int PI = 3.14159265;
+const double PI = 3.14159265;
 
 class Player
 {

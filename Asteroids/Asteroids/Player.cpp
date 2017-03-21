@@ -89,6 +89,8 @@ void Player::move()
 	//x: -0.750987 and y : -0.660317
 	//whereas it should be
 	//x: 0 and y: 1
+
+	//it's k I just dumb! All is well with the world now
 	double x = std::sin(m_rotation * PI / 180.0);
 	double y = -std::cos(m_rotation * PI / 180.0);
 
@@ -96,8 +98,6 @@ void Player::move()
 	std::cout << "x: " << x << "y: " << y << std::endl;
 	std::cout << m_rotation << std::endl;
 
-
-	//m_velocity += m_acceleration;
 	m_velocity.y += m_accelerationVector.y * m_acceleration;
 	m_velocity.x += m_accelerationVector.x * m_acceleration;
 
