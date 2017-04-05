@@ -3,8 +3,8 @@
 #include <iostream>
 #include <math.h>
 #include "SFML/Graphics.hpp"
+#include "Globals.h"
 
-const double PI = 3.14159265;
 
 class Player
 {

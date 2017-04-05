@@ -19,7 +19,7 @@ void Game::loadContent()
 
 void Game::init()
 {
-	currScreen = (MenuScreen::License);
+	currScreen = (MenuScreen::Level);
 	m_licenseTime = 0; //set back to 260 when finished
 	license.init(m_font);
 	splash.init(m_font);
@@ -148,7 +148,7 @@ void Game::processLevelEvents()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		currScreen = MenuScreen::MainMenu;
+		//currScreen = MenuScreen::MainMenu;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{

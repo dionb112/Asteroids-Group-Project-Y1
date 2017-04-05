@@ -48,7 +48,7 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Asteroid.h">
+    <ClInclude Include="Asteroids.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -83,7 +83,7 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Asteroid.cpp">
+    <ClCompile Include="Asteroids.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

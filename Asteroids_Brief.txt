@@ -1,0 +1,60 @@
+In groups of two (both from the same half of the class) you need to design a game based on the gameplay of Asteroids but with an overarching path which should support and encourage the player to play repeated asteroid levels.
+
+The asteroid levels should to varied by a combination of the following properties
+
+    Asteroids : No. of / speed / strength / reward etc.
+    SpaceShip: speed / fuel / shields / laser power/ laser fire rate/ acceleration / turning / hold capacity / skin
+
+
+Your game must feature several game screens including splash, menu, help etc..
+
+The project will continue till the week after the Easter holidays and result in a game playable on a PC using mouse and keyboard (not necessarily both or only one) in C++ with SFML.
+
+There is a folder with approved Images you can use in your game any other images used must be approved before hand by Pete both at concept and final stage.
+
+ 
+
+Your first deliverable is a game design document created on google docs. (Due in 1 week) (7/2 & 10/2) at the end of class [Send me email with a pdf attachment and a link to comment document]
+
+The GDD it must include a description of the motive and mechanics of how the overarching game will progress. It should include a sketch of each screen accompanied by a description of the elements and the user’s interaction with that screen.
+
+ 
+
+A Technical Design Document is due the following week (14/2 & 17/2) at the end of class [Send me email with a pdf attachment and a link to comment document]
+
+It will include a list of the expected classes their most important members and methods. A description of how key systems are going to be implemented on the game including (collision system, upgrade system, economy, game progress)
+
+The code needs to be stored continuously on Github via Pete’s classroom both students should divide the labour evenly (coding/writing/asset management) you may however split the programming up by class or system.
+
+https://classroom.github.com/group-assignment-invitations/a7440c943c02b40fb3bbc881bccdf867
+
+ 
+
+ 
+
+You may base your design on my sample asteroid game or create your reason for playing asteroids again and again.
+
+There is no need for animated sprites. There is no mark for creating your own assets. Collision detection is to be done my using the location vectors (my3D) and diameters all objects are to be considered as circles. The objects are to include your own vectors to determine their location/velocity/acceleration.
+
+A suggested development plan
+
+    GDD
+    TDD
+    Basic screens with label and default key to move to next screen.
+    Implement one system at a time
+        Navigation
+        Upgrade
+        Economy
+        Gameplay
+        Story
+    Final elements (credits / help etc.)
+    Polish (bug fix)
+
+
+Sample GDD
+
+https://docs.google.com/document/d/1ssrK4KlcjlMLdPpBQqp_syf03xNsBk5RuQ2rx5tKGSk/edit?usp=sharing
+
+Sample TDD (ish)
+
+https://docs.google.com/document/d/1h_XltXSUqJlhUC-HnETdK5LxTrqge4Kbaj89IZt05Fc/edit?usp=sharing
