@@ -24,6 +24,12 @@ public:
 
 	void screenWrap();
 
+	void fireUp();
+	void boostUp();
+	void armourUp();
+
+private:
+
 	sf::Texture m_playerTexture;
 	sf::Sprite m_playerSprite;
 	sf::IntRect m_playerRect;
@@ -34,4 +40,9 @@ public:
 	sf::Vector2f m_velocity;
 	double m_acceleration;
 	sf::Vector2f m_accelerationVector;
+
+	//player upgradable stats
+	int m_fireRate;
+	int m_boostLevel;
+	int m_armourLevel;
 };

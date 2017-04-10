@@ -14,6 +14,9 @@ public:
 	void update();
 	void movePlayer();
 	void rotatePlayer(bool rotateLeft);
+	void fireUp();
+	void boostUp();
+	void armourUp();
 	void render(sf::RenderWindow &window);
 	void drawAsteroids(sf::RenderWindow &window);
 };

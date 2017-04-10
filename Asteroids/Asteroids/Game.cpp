@@ -19,7 +19,7 @@ void Game::loadContent()
 
 void Game::init()
 {
-	currScreen = (MenuScreen::Level);
+	currScreen = (MenuScreen::MainMenu);
 	m_licenseTime = 0; //set back to 260 when finished
 	license.init(m_font);
 	splash.init(m_font);
@@ -63,27 +63,28 @@ void Game::processEvents()
 				m_window.close();
 			}
 		}
+		if (currScreen == MenuScreen::Splash)
+		{
+			processSplashEvents();
+		}
+		if (currScreen == MenuScreen::MainMenu)
+		{
+			processMainMenuEvents();
+		}
+		if (currScreen == MenuScreen::LevelSelect)
+		{
+			processLevelSelectEvents();
+		}
+		if (currScreen == MenuScreen::Help)
+		{
+			processHelpEvents();
+		}
+		if (currScreen == MenuScreen::Upgrade)
+		{
+			processUpgradeEvents();
+		}
 	}
-	if (currScreen == MenuScreen::Splash)
-	{
-		processSplashEvents();
-	}
-	if (currScreen == MenuScreen::MainMenu)
-	{
-		processMainMenuEvents();
-	}
-	if (currScreen == MenuScreen::LevelSelect)
-	{
-		processLevelSelectEvents();
-	}
-	if (currScreen == MenuScreen::Help)
-	{
-		processHelpEvents();
-	}
-	if (currScreen == MenuScreen::Upgrade)
-	{
-		processUpgradeEvents();
-	}
+	
 	if (currScreen == MenuScreen::Level)
 	{
 		processLevelEvents();
@@ -141,6 +142,21 @@ void Game::processUpgradeEvents()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		currScreen = MenuScreen::MainMenu;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+	{
+		level.fireUp();
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	{
+		level.boostUp();
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+	{
+		level.armourUp();
 	}
 }
 

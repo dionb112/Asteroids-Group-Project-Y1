@@ -20,6 +20,21 @@ void Level::rotatePlayer(bool rotateLeft)
 	m_player.rotate(rotateLeft);
 }
 
+void Level::fireUp()
+{
+	m_player.fireUp();
+}
+
+void Level::boostUp()
+{
+	m_player.boostUp();
+}
+
+void Level::armourUp()
+{
+	m_player.armourUp();
+}
+
 void Level::render(sf::RenderWindow & window)
 {
 	m_player.render(window);

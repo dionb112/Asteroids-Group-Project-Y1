@@ -32,6 +32,10 @@ void Player::init()
 	m_turnRate = 0.1;
 	m_acceleration = 0.01;
 	m_rotation = 0;
+	
+	m_fireRate = 0;
+	m_boostLevel = 0;
+	m_armourLevel = 0;
 }
 
 void Player::update()
@@ -65,6 +69,24 @@ void Player::screenWrap()
 	{
 		m_playerSprite.setPosition(m_playerSprite.getPosition().x, 0);
 	}
+}
+
+void Player::fireUp()
+{
+	m_fireRate++;
+	std::cout << "fireRate: " << m_fireRate << std::endl;
+}
+
+void Player::boostUp()
+{
+	m_boostLevel++;
+	std::cout << "Boost: " << m_boostLevel << std::endl;
+}
+
+void Player::armourUp()
+{
+	m_armourLevel++;
+	std::cout << "Armour: " << m_armourLevel << std::endl;
 }
 
 void Player::render(sf::RenderWindow & window)
