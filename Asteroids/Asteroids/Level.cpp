@@ -35,6 +35,21 @@ void Level::armourUp()
 	m_player.armourUp();
 }
 
+void Level::capacityUp()
+{
+	m_player.capacityUp();
+}
+
+void Level::shieldUp()
+{
+	m_player.shieldUp();
+}
+
+void Level::fuelUp()
+{
+	m_player.fuelUp();
+}
+
 void Level::render(sf::RenderWindow & window)
 {
 	m_player.render(window);

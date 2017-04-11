@@ -27,6 +27,9 @@ public:
 	void fireUp();
 	void boostUp();
 	void armourUp();
+	void capacityUp();
+	void shieldUp();
+	void fuelUp();
 
 private:
 
@@ -42,6 +45,9 @@ private:
 	sf::Vector2f m_accelerationVector;
 
 	//player upgradable stats
+	int m_capacityLevel;
+	int m_shieldLevel;
+	int m_fuelLevel;
 	int m_fireRate;
 	int m_boostLevel;
 	int m_armourLevel;

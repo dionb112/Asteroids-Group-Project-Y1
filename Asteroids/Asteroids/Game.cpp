@@ -39,7 +39,6 @@ void Game::run()
 	sf::Time timePerFrame = sf::seconds(1.0f / 60.0f);
 	while (m_window.isOpen())
 	{
-		processEvents();
 		timeSinceLastUpdate += clock.restart();
 		while (timeSinceLastUpdate > timePerFrame)
 		{
@@ -157,6 +156,21 @@ void Game::processUpgradeEvents()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 	{
 		level.armourUp();
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
+	{
+		level.capacityUp();
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
+	{
+		level.shieldUp();
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num6))
+	{
+		level.fuelUp();
 	}
 }
 

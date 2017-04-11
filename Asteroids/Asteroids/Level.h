@@ -17,6 +17,9 @@ public:
 	void fireUp();
 	void boostUp();
 	void armourUp();
+	void capacityUp();
+	void shieldUp();
+	void fuelUp();
 	void render(sf::RenderWindow &window);
 	void drawAsteroids(sf::RenderWindow &window);
 };

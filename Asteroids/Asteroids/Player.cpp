@@ -33,9 +33,12 @@ void Player::init()
 	m_acceleration = 0.01;
 	m_rotation = 0;
 	
-	m_fireRate = 0;
-	m_boostLevel = 0;
-	m_armourLevel = 0;
+	m_fireRate = 1;
+	m_boostLevel = 1;
+	m_armourLevel = 1;
+	m_capacityLevel = 1;
+	m_fuelLevel = 1;
+	m_shieldLevel = 1;
 }
 
 void Player::update()
@@ -87,6 +90,24 @@ void Player::armourUp()
 {
 	m_armourLevel++;
 	std::cout << "Armour: " << m_armourLevel << std::endl;
+}
+
+void Player::capacityUp()
+{
+	m_capacityLevel++;
+	std::cout << "Capacity: " << m_capacityLevel << std::endl;
+}
+
+void Player::shieldUp()
+{
+	m_shieldLevel++;
+	std::cout << "shield: " << m_shieldLevel << std::endl;
+}
+
+void Player::fuelUp()
+{
+	m_fuelLevel++;
+	std::cout << "Fuel: " << m_fuelLevel << std::endl;
 }
 
 void Player::render(sf::RenderWindow & window)
