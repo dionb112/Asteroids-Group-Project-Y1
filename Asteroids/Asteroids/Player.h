@@ -17,11 +17,12 @@ public:
 	void render(sf::RenderWindow &window);
 	sf::Sprite getBody();
 
+	void reset();
+
 	void move();
 	double getRotation();
 	void rotate(bool turnLeft);
 	void friction();
-
 	void screenWrap();
 
 	void fireUp();
@@ -41,8 +42,13 @@ private:
 	double m_rotation;
 	double m_turnRate;
 	sf::Vector2f m_velocity;
-	double m_acceleration;
 	sf::Vector2f m_accelerationVector;
+
+	//Current stats for level
+	double m_acceleration;
+	int m_shields;
+	int m_fuel;
+
 
 	//player upgradable stats
 	int m_capacityLevel;

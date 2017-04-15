@@ -38,6 +38,7 @@ private:
 	void loadContent();
 	void init();
 	void update();
+
 	void processEvents();
 	void processSplashEvents();
 	void processMainMenuEvents();
@@ -45,6 +46,7 @@ private:
 	void processHelpEvents();
 	void processUpgradeEvents();
 	void processLevelEvents();
+
 	void render();
 
 	sf::RenderWindow m_window;

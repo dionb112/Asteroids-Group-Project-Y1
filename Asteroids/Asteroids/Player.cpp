@@ -29,8 +29,8 @@ void Player::init()
 	m_body.setRadius(10);
 	m_body.setFillColor(sf::Color::Green);
 	m_velocity = sf::Vector2f(0, 0);
-	m_turnRate = 0.1;
-	m_acceleration = 0.01;
+	m_turnRate = 4;
+	m_acceleration = 0.15;
 	m_rotation = 0;
 	
 	m_fireRate = 1;
@@ -120,30 +120,29 @@ sf::Sprite Player::getBody()
 	return m_playerSprite;
 }
 
+void Player::reset()
+{
+	m_body.setPosition(SCR_W / 2, SCR_H / 2);
+	m_acceleration = m_boostLevel * 0.1;
+	m_fuel = 300 + m_fuelLevel * 50;
+}
+
 void Player::move()
 {
-	//Note:
-	//Sin and cos are not giving the appropriate values.
-	//The vakues are close to what they should be but
-	//after rotating the ship around 3 or 4 times you 
-	//start to see a major difference in what it should be
-	//I'm still not sure why this is happening.
-	//eg: for a rotation of 1080 (3 spins) the results are
-	//x: -0.750987 and y : -0.660317
-	//whereas it should be
-	//x: 0 and y: 1
+	if (m_fuel > 0)
+	{
+		double x = std::sin(m_rotation * PI / 180.0);
+		double y = -std::cos(m_rotation * PI / 180.0);
 
-	//it's k I just dumb! All is well with the world now
-	double x = std::sin(m_rotation * PI / 180.0);
-	double y = -std::cos(m_rotation * PI / 180.0);
+		m_accelerationVector = sf::Vector2f(x, y);
+		std::cout << "x: " << x << "y: " << y << std::endl;
+		std::cout << m_rotation << std::endl;
 
-	m_accelerationVector = sf::Vector2f(x, y);
-	std::cout << "x: " << x << "y: " << y << std::endl;
-	std::cout << m_rotation << std::endl;
+		m_velocity.y += m_accelerationVector.y * m_acceleration;
+		m_velocity.x += m_accelerationVector.x * m_acceleration;
 
-	m_velocity.y += m_accelerationVector.y * m_acceleration;
-	m_velocity.x += m_accelerationVector.x * m_acceleration;
-
+		m_fuel--;
+	}
 }
 
 double Player::getRotation()

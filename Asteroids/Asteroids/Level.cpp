@@ -50,6 +50,11 @@ void Level::fuelUp()
 	m_player.fuelUp();
 }
 
+void Level::levelSetup()
+{
+	m_player.reset();
+}
+
 void Level::render(sf::RenderWindow & window)
 {
 	m_player.render(window);

@@ -124,6 +124,7 @@ void Game::processLevelSelectEvents()
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
+		level.levelSetup();
 		currScreen = MenuScreen::Level;
 	}
 }
@@ -178,7 +179,7 @@ void Game::processLevelEvents()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		//currScreen = MenuScreen::MainMenu;
+		//pew pew pew;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
