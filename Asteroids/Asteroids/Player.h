@@ -25,6 +25,8 @@ public:
 	void friction();
 	void screenWrap();
 
+	void animate();
+
 	void fireUp();
 	void boostUp();
 	void armourUp();
@@ -43,6 +45,10 @@ private:
 	double m_turnRate;
 	sf::Vector2f m_velocity;
 	sf::Vector2f m_accelerationVector;
+
+	int m_currFrame;
+	int m_frameDelay;
+	bool m_isMoving;
 
 	//Current stats for level
 	double m_acceleration;

@@ -33,6 +33,10 @@ void Player::init()
 	m_acceleration = 0.15;
 	m_rotation = 0;
 	
+	m_currFrame = 0;
+	m_frameDelay = 0;
+	m_isMoving = false;
+
 	m_fireRate = 1;
 	m_boostLevel = 1;
 	m_armourLevel = 1;
@@ -45,6 +49,7 @@ void Player::update()
 {
 	m_playerSprite.move(m_velocity);
 	friction();
+	animate();
 	screenWrap();
 }
 
@@ -72,6 +77,35 @@ void Player::screenWrap()
 	{
 		m_playerSprite.setPosition(m_playerSprite.getPosition().x, 0);
 	}
+}
+
+void Player::animate()
+{
+	if (m_isMoving)
+	{
+		if (m_frameDelay <= 0)
+		{
+			m_frameDelay = 4;
+
+			m_currFrame++;
+			if (m_currFrame > 5)
+			{
+				m_currFrame = 1;
+			}
+		}
+
+		m_frameDelay--;
+		
+	}
+	if (!m_isMoving)
+	{
+		m_currFrame = 0;
+	}
+
+	m_playerRect.left = 64 * m_currFrame;
+	m_playerSprite.setTextureRect(m_playerRect);
+
+	m_isMoving = false;
 }
 
 void Player::fireUp()
@@ -142,6 +176,7 @@ void Player::move()
 		m_velocity.x += m_accelerationVector.x * m_acceleration;
 
 		m_fuel--;
+		m_isMoving = true;
 	}
 }
 
