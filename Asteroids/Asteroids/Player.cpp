@@ -122,7 +122,7 @@ sf::Sprite Player::getBody()
 
 void Player::reset()
 {
-	m_body.setPosition(SCR_W / 2, SCR_H / 2);
+	m_playerSprite.setPosition(SCR_W / 2, SCR_H / 2);
 	m_acceleration = m_boostLevel * 0.1;
 	m_fuel = 300 + m_fuelLevel * 50;
 }

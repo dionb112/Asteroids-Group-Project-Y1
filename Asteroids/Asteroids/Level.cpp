@@ -8,6 +8,7 @@ void Level::init()
 void Level::update()
 {
 	m_player.update();
+	m_playerBullet.update();
 }
 
 void Level::movePlayer()
@@ -18,6 +19,15 @@ void Level::movePlayer()
 void Level::rotatePlayer(bool rotateLeft)
 {
 	m_player.rotate(rotateLeft);
+}
+
+void Level::playerShoot()
+{
+	if (!m_playerBullet.getActive())
+	{
+		m_playerBullet.setPosition(m_player.getBody().getPosition().x, m_player.getBody().getPosition().y);
+		m_playerBullet.setVelocity(m_player.getRotation());
+	}
 }
 
 void Level::fireUp()
@@ -58,6 +68,7 @@ void Level::levelSetup()
 void Level::render(sf::RenderWindow & window)
 {
 	m_player.render(window);
+	m_playerBullet.render(window);
 	drawAsteroids(window);
 
 }

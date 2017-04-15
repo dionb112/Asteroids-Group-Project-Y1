@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asteroids.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Help.h" />
@@ -34,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Asteroids.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Help.cpp" />
     <ClCompile Include="Level.cpp" />

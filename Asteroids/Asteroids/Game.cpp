@@ -179,7 +179,7 @@ void Game::processLevelEvents()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		//pew pew pew;
+		level.playerShoot();
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
