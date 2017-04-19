@@ -63,17 +63,17 @@ void Player::screenWrap()
 {
 	if (m_playerSprite.getPosition().x < 0)
 	{
-		m_playerSprite.setPosition(800, m_playerSprite.getPosition().y);
+		m_playerSprite.setPosition(SCR_W, m_playerSprite.getPosition().y);
 	}
-	if (m_playerSprite.getPosition().x > 800)
+	if (m_playerSprite.getPosition().x > SCR_W)
 	{
 		m_playerSprite.setPosition(0, m_playerSprite.getPosition().y);
 	}
 	if (m_playerSprite.getPosition().y < 0)
 	{
-		m_playerSprite.setPosition(m_playerSprite.getPosition().x, 480);
+		m_playerSprite.setPosition(m_playerSprite.getPosition().x, SCR_H);
 	}
-	if (m_playerSprite.getPosition().y > 480)
+	if (m_playerSprite.getPosition().y > SCR_H)
 	{
 		m_playerSprite.setPosition(m_playerSprite.getPosition().x, 0);
 	}

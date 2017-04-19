@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <SFML\Graphics.hpp>
-
+#include "Globals.h"
 class Asteroids
 {
 	sf::Vector2f m_speed;
@@ -21,6 +21,8 @@ class Asteroids
 	sf::Vector2f m_medPos;
 	sf::Vector2f m_smallPos;
 	sf::Vector2f m_tinyPos;
+	
+	int m_type;
 public:
 	Asteroids();
 	~Asteroids();
@@ -29,4 +31,7 @@ public:
 	void render(sf::RenderWindow & window);
 	void update();
 	void setupSprites();
+	void setupType(int type);
+	void movement();
+	void screenWrap();
 };

@@ -7,9 +7,12 @@ class Level
 {
 private:
 	sf::Text m_screenText;
-	Player m_player;
-	Bullet m_playerBullet;
-	Asteroids asteroids[MAX_ASTEROIDS];
+	Player player;
+	Bullet playerBullet;
+	Asteroids largeAsteroids[MAX_ASTEROIDS];
+	Asteroids medAsteroids[MAX_ASTEROIDS];
+	Asteroids smallAsteroids[MAX_ASTEROIDS];
+	Asteroids tinyAsteroids[MAX_ASTEROIDS];
 
 public:
 	void init();
@@ -30,4 +33,7 @@ public:
 
 	void render(sf::RenderWindow &window);
 	void drawAsteroids(sf::RenderWindow &window);
+	void setAsteroidType();
+	void initAsteroids();
+	void updateAsteroids();
 };
