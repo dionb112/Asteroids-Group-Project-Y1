@@ -52,23 +52,23 @@ void Asteroids::setupSprites()
 	switch (m_type)
 	{
 	case 1:
-		m_largePos.x = rand() % 850 - 50;
-		m_largePos.y = rand() % 530 - 50;
+		m_largePos.x = rand() % (SCR_W + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
+		m_largePos.y = rand() % (SCR_H + OFF_SCR_OFFSET * 2) - 50;
 		m_largeSprite.setPosition(m_largePos);
 		break;
 	case 2:
-		m_medPos.x = rand() % 850 - 50;
-		m_medPos.y = rand() % 530 - 50;
+		m_medPos.x = rand() % (SCR_W + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
+		m_medPos.y = rand() % (SCR_H + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
 		m_medSprite.setPosition(m_medPos);
 		break;
 	case 3:
-		m_smallPos.x = rand() % 850 - 50;
-		m_smallPos.y = rand() % 530 - 50;
+		m_smallPos.x = rand() % (SCR_W + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
+		m_smallPos.y = rand() % (SCR_H + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
 		m_smallSprite.setPosition(m_smallPos);
 		break;
 	case 4:
-		m_tinyPos.x = rand() % 850 - 50;
-		m_tinyPos.y = rand() % 530 - 50;
+		m_tinyPos.x = rand() % (SCR_W + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
+		m_tinyPos.y = rand() % (SCR_H + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
 		m_tinySprite.setPosition(m_tinyPos);
 		break;
 	}
