@@ -11,6 +11,15 @@ void Level::update()
 	player.update();
 	playerBullet.update();
 	updateAsteroids();
+	gems.update();
+}
+
+void Level::render(sf::RenderWindow & window)
+{
+	player.render(window);
+	playerBullet.render(window);
+	drawAsteroids(window);
+	gems.render(window);
 }
 
 void Level::movePlayer()
@@ -67,13 +76,6 @@ void Level::levelSetup()
 	player.reset();
 }
 
-void Level::render(sf::RenderWindow & window)
-{
-	player.render(window);
-	playerBullet.render(window);
-	drawAsteroids(window);
-
-}
 
 void Level::setNoOfAsteroids()
 {
@@ -182,9 +184,42 @@ void Level::deleteTiny()
 {
 	if (m_noOfTiny > 0)
 	{
+		spawnGem();
 		m_noOfTiny--;
 		std::cout << "1 tiny removed" << std::endl;
+
 	}
+}
+
+/// <summary>
+/// spawning gems for first level
+/// </summary>
+void Level::spawnGem()
+{
+	int index = -1;
+	int random = rand() % 10 + 1;
+	if (random <= 6)
+	{
+		int gemType = rand() % 6 + 1;
+		if (gemType == 1)
+		{
+			index = 0;
+		}
+		else if (gemType == 2)
+		{
+			index = 1;
+		}
+		else if (gemType == 3)
+		{
+			index = 2;
+		}
+		else if (gemType > 3)
+		{
+			index = 3;
+		}
+		gems.spawn(index, tinyAsteroids[m_noOfTiny].getPos());
+	}
+
 }
 
 void Level::addMed()
@@ -194,8 +229,8 @@ void Level::addMed()
 		medAsteroids[m_noOfMed].setupType(2);
 		medAsteroids[m_noOfMed].loadContent();
 		medAsteroids[m_noOfMed].spawnAsteroids();
-		m_noOfMed++;
-		std::cout << "1 med added" << std::endl;
+		m_noOfMed = m_noOfMed + 2;
+		std::cout << "2 med added" << std::endl;
 	}
 }
 
@@ -206,8 +241,8 @@ void Level::addSmall()
 		smallAsteroids[m_noOfSmall].setupType(3);
 		smallAsteroids[m_noOfSmall].loadContent();
 		smallAsteroids[m_noOfSmall].spawnAsteroids();
-		m_noOfSmall++;
-		std::cout << "1 small added" << std::endl;
+		m_noOfSmall = m_noOfSmall + 2;
+		std::cout << "2 small added" << std::endl;
 	}
 }
 
@@ -218,7 +253,7 @@ void Level::addTiny()
 		tinyAsteroids[m_noOfTiny].setupType(4);
 		tinyAsteroids[m_noOfTiny].loadContent();
 		tinyAsteroids[m_noOfTiny].spawnAsteroids();
-		m_noOfTiny++;
-		std::cout << "1 tiny added" << std::endl;
+		m_noOfTiny = m_noOfTiny+2;
+		std::cout << "2 tiny added" << std::endl;
 	}
 }

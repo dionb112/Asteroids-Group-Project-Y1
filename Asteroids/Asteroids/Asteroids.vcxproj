@@ -22,6 +22,7 @@
     <ClInclude Include="Asteroids.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Gems.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Help.h" />
     <ClInclude Include="Level.h" />
@@ -37,6 +38,7 @@
     <ClCompile Include="Asteroids.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gems.cpp" />
     <ClCompile Include="Help.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelSelect.cpp" />

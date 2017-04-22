@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Asteroids.h"
 #include "Bullet.h"
+#include "Gems.h"
 #include "SFML/Graphics.hpp"
 class Level
 {
@@ -13,7 +14,7 @@ private:
 	Asteroids medAsteroids[MAX_ASTEROIDS + 4];
 	Asteroids smallAsteroids[MAX_ASTEROIDS + 14];
 	Asteroids tinyAsteroids[MAX_ASTEROIDS + 34];
-	Asteroids newAsteroid;
+	Gems gems;
 	int m_noOfLarge;
 	int m_noOfMed;
 	int m_noOfSmall;
@@ -49,4 +50,5 @@ public:
 	void addMed();
 	void addSmall();
 	void addTiny();
+	void spawnGem();
 };

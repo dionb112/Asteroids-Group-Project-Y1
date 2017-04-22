@@ -197,14 +197,17 @@ void Game::processLevelEvents()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
 		level.deleteLarge();
+		level.addMed();
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 	{
 		level.deleteMed();
+		level.addSmall();
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
 	{
 		level.deleteSmall();
+		level.addTiny();
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
 	{
