@@ -149,6 +149,7 @@ void Level::drawAsteroids(sf::RenderWindow & window)
 
 /// <summary>
 /// These functions are all seperated to allow for more effecient calling. Rather than calling one big arraysManager function and passing around a bunch of variables every time any collision of any type happens
+/// There is no function for add large since there is no bigger asteroid to destroy giving two large
 /// </summary>
 void Level::deleteLarge()
 {
