@@ -192,7 +192,9 @@ void Level::deleteTiny()
 }
 
 /// <summary>
-/// spawning gems for first level
+/// spawning gems for first level, called upon tiny deletion
+/// on Earth level, orange, red and purple have 10% spawn chance
+/// green has 30% and blue has 0%
 /// </summary>
 void Level::spawnGem()
 {
@@ -200,7 +202,7 @@ void Level::spawnGem()
 	int random = rand() % 10 + 1;
 	if (random <= 6)
 	{
-		int gemType = rand() % 6 + 1;
+		int gemType = rand() % 6 + 1; //combined chance of any spawn is 60% so check if any have spawned, then we check individually which has spawned
 		if (gemType == 1)
 		{
 			index = 0;
@@ -217,7 +219,7 @@ void Level::spawnGem()
 		{
 			index = 3;
 		}
-		gems.spawn(index, tinyAsteroids[m_noOfTiny].getPos());
+		gems.spawn(index, tinyAsteroids[m_noOfTiny].getPos());//spawn that gem
 	}
 
 }

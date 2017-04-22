@@ -13,7 +13,10 @@ void Gems::loadContent(int index)
 	{
 		std::cout << "Error loading gem texture" << std::endl;
 	}
+	m_texture.setSmooth(1); //smooth like stones on a beach
 	m_bodies[index].setTexture(m_texture);
+	m_bodies[index].setOrigin(16,16);
+
 }
 
 void Gems::init(int index )
@@ -47,13 +50,7 @@ void Gems::init(int index )
 
 void Gems::update()
 {
-	for (int i = 0; i < 5; i++)
-	{
-		if (isAlive[i])
-		{
-			rotate();
-		}
-	}
+	rotate();
 }
 
 void Gems::render(sf::RenderWindow &window)
@@ -66,7 +63,11 @@ void Gems::render(sf::RenderWindow &window)
 		}
 	}
 }
-
+/// <summary>
+/// function spawning gem, we do not load assets or anything until this point since it would be unnececery
+/// </summary>
+/// <param name="index"></param>
+/// <param name="deadAsteroidPos"></param>
 void Gems::spawn(int index, sf::Vector2f deadAsteroidPos)
 {
 	loadContent(index);
@@ -78,4 +79,11 @@ void Gems::spawn(int index, sf::Vector2f deadAsteroidPos)
 
 void Gems::rotate()
 {
+	for (int i = 0; i < 5; i++)
+	{
+		if (isAlive[i])
+		{
+			m_bodies[i].rotate(1);
+		}
+	}
 }
