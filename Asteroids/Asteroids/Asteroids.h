@@ -30,8 +30,10 @@ public:
 	void init();
 	void render(sf::RenderWindow & window);
 	void update();
-	void setupSprites();
+	void spawnAsteroids();
 	void setupType(int type);
 	void movement();
 	void screenWrap();
+	sf::Vector2f getPos();
+	void setAllOffScr(sf::Vector2f &pos, sf::Sprite &sprit);
 };

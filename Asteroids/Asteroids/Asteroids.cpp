@@ -3,12 +3,43 @@
 Asteroids::Asteroids()
 {
 	//TODO: Dion, maybe the max speed is too high at the moment
-	m_speed.x = float(rand()) / float(RAND_MAX) * 15 - 7.5f ;
-	m_speed.y = float(rand()) / float(RAND_MAX) * 15 - 7.5f ;
+	m_speed.x = float(rand()) / float(RAND_MAX) * 5 - 2.5f ;
+	m_speed.y = float(rand()) / float(RAND_MAX) * 5 - 2.5f ;
+	setAllOffScr(m_largePos, m_largeSprite);
+	setAllOffScr(m_medPos, m_medSprite);
+	setAllOffScr(m_smallPos, m_smallSprite);
+	setAllOffScr(m_tinyPos, m_tinySprite);
 }
 
 Asteroids::~Asteroids()
 {
+}
+
+sf::Vector2f Asteroids::getPos()
+{
+	sf::Vector2f pos;
+	switch (m_type)
+	{
+	case 1:
+		pos = m_largePos;
+		break;
+	case 2:
+		pos = m_medPos;
+		break;
+	case 3:
+		pos = m_smallPos;
+		break;
+	case 4:
+		pos = m_tinyPos;
+		break;
+	}
+	return pos;
+}
+
+void Asteroids::setAllOffScr(sf::Vector2f &pos, sf::Sprite &sprite)
+{
+	pos = { -OFF_SCR_OFFSET * 2, -OFF_SCR_OFFSET * 2 };
+	sprite.setPosition(pos);
 }
 
 void Asteroids::loadContent()
@@ -47,13 +78,13 @@ void Asteroids::loadContent()
 }
 
 ///TODO: Dion, ensure asteroids do not spawn in the centre of the screen where the player is
-void Asteroids::setupSprites()
+void Asteroids::spawnAsteroids()
 {
 	switch (m_type)
 	{
 	case 1:
 		m_largePos.x = rand() % (SCR_W + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
-		m_largePos.y = rand() % (SCR_H + OFF_SCR_OFFSET * 2) - 50;
+		m_largePos.y = rand() % (SCR_H + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
 		m_largeSprite.setPosition(m_largePos);
 		break;
 	case 2:
@@ -82,8 +113,8 @@ void Asteroids::setupType(int type)
 
 void Asteroids::init()
 {
-	loadContent();
-	setupSprites();
+	loadContent(); 
+	spawnAsteroids();
 }
 
 void Asteroids::render(sf::RenderWindow & window)

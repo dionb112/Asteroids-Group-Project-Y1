@@ -10,9 +10,14 @@ private:
 	Player player;
 	Bullet playerBullet;
 	Asteroids largeAsteroids[MAX_ASTEROIDS];
-	Asteroids medAsteroids[MAX_ASTEROIDS];
-	Asteroids smallAsteroids[MAX_ASTEROIDS];
-	Asteroids tinyAsteroids[MAX_ASTEROIDS];
+	Asteroids medAsteroids[MAX_ASTEROIDS + 4];
+	Asteroids smallAsteroids[MAX_ASTEROIDS + 14];
+	Asteroids tinyAsteroids[MAX_ASTEROIDS + 34];
+	Asteroids newAsteroid;
+	int m_noOfLarge;
+	int m_noOfMed;
+	int m_noOfSmall;
+	int m_noOfTiny;
 
 public:
 	void init();
@@ -33,7 +38,15 @@ public:
 
 	void render(sf::RenderWindow &window);
 	void drawAsteroids(sf::RenderWindow &window);
+	void setNoOfAsteroids();
 	void setAsteroidType();
 	void initAsteroids();
 	void updateAsteroids();
+	void deleteLarge();
+	void deleteMed();
+	void deleteSmall();
+	void deleteTiny();
+	void addMed();
+	void addSmall();
+	void addTiny();
 };

@@ -193,6 +193,35 @@ void Game::processLevelEvents()
 	{
 		level.rotatePlayer(false);
 	}
+	//Testing add and remove before collisions
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	{
+		level.deleteLarge();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+	{
+		level.deleteMed();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
+	{
+		level.deleteSmall();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
+	{
+		level.deleteTiny();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num6))
+	{
+		level.addMed();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num7))
+	{
+		level.addSmall();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num8))
+	{
+		level.addTiny();
+	}
 }
 
 void Game::update()
