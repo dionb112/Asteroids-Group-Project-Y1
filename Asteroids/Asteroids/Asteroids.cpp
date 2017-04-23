@@ -36,6 +36,11 @@ sf::Vector2f Asteroids::getPos()
 	return pos;
 }
 
+int Asteroids::getRadius()
+{
+	return m_radius;
+}
+
 void Asteroids::setAllOffScr(sf::Vector2f &pos, sf::Sprite &sprite)
 {
 	pos = { -OFF_SCR_OFFSET * 2, -OFF_SCR_OFFSET * 2 };
@@ -108,6 +113,22 @@ void Asteroids::spawnAsteroids()
 void Asteroids::setupType(int type)
 {
 	m_type = type;
+
+	switch (m_type)
+	{
+	case 1:
+		m_radius = 64;
+		break;
+	case 2:
+		m_radius = 48;
+		break;
+	case 3:
+		m_radius = 32;
+		break;
+	case 4:
+		m_radius = 16;
+		break;
+	}
 }
 
 

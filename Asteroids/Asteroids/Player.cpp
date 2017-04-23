@@ -175,8 +175,6 @@ void Player::move()
 		double y = -std::cos(m_rotation * PI / 180.0);
 
 		m_accelerationVector = sf::Vector2f(x, y);
-		std::cout << "x: " << x << "y: " << y << std::endl;
-		std::cout << m_rotation << std::endl;
 
 		m_velocity.y += m_accelerationVector.y * m_acceleration;
 		m_velocity.x += m_accelerationVector.x * m_acceleration;

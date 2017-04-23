@@ -23,6 +23,9 @@ class Asteroids
 	sf::Vector2f m_tinyPos;
 	
 	int m_type;
+
+	int m_radius;
+
 public:
 	Asteroids();
 	~Asteroids();
@@ -35,5 +38,6 @@ public:
 	void movement();
 	void screenWrap();
 	sf::Vector2f getPos();
+	int getRadius();
 	void setAllOffScr(sf::Vector2f &pos, sf::Sprite &sprit);
 };
