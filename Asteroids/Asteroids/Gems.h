@@ -18,5 +18,6 @@ public:
 	void render(sf::RenderWindow &window);
 	void spawn(int index, sf::Vector2f deadAsteroidPos);
 	void rotate();
+	sf::Vector2f getPos(int index);
 	int getRadius();
 };

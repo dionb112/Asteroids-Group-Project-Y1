@@ -89,6 +89,12 @@ void Gems::rotate()
 	}
 }
 
+sf::Vector2f Gems::getPos(int index)
+{
+	sf::Vector2f temp = m_bodies[index].getPosition();
+	return temp;
+}
+
 int Gems::getRadius()
 {
 	return m_radius;
