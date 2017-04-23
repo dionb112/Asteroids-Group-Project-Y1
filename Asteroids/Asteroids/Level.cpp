@@ -4,6 +4,7 @@ void Level::init()
 {
 	player.init();
 	initAsteroids();
+	pirate.init();
 }
 
 void Level::update()
@@ -22,6 +23,7 @@ void Level::render(sf::RenderWindow & window)
 	playerBullet.render(window);
 	drawAsteroids(window);
 	gems.render(window);
+	pirate.render(window);
 }
 
 void Level::movePlayer()

@@ -12,7 +12,7 @@ void Player::init()
 {
 	if (!m_playerTexture.loadFromFile("ASSETS\\IMAGES\\smallplayerstrip064.png"))
 	{
-		std::cout << "problem loading WAV file";
+		std::cout << "problem loading player texture file";
 	}
 
 	m_playerSprite.setTexture(m_playerTexture);
