@@ -22,15 +22,19 @@ sf::Vector2f Asteroids::getPos()
 	{
 	case 1:
 		pos = m_largePos;
+		pos += {64, 64};
 		break;
 	case 2:
 		pos = m_medPos;
+		pos += {48, 48};
 		break;
 	case 3:
 		pos = m_smallPos;
+		pos += {32, 32};
 		break;
 	case 4:
 		pos = m_tinyPos;
+		pos += {16, 16};
 		break;
 	}
 	return pos;
@@ -163,7 +167,6 @@ void Asteroids::movement()
 		m_tinySprite.setPosition(m_tinyPos);
 		break;
 	}
-	
 }
 ///TODO: Dion, maybe where type is set have a local variable that takes the place
 ///of the sprite and pos variable for that type, then pass those into all these functions
