@@ -23,7 +23,7 @@ private:
 	int m_noOfSmall;
 	int m_noOfTiny;
 	int m_counter;
-
+	int m_prevBehaviour;
 public:
 	void init();
 	void update();

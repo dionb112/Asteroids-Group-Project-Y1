@@ -6,6 +6,7 @@ void Level::init()
 	initAsteroids();
 	pirate.init();
 	m_counter = 0;
+	m_prevBehaviour = 0;
 }
 
 void Level::update()
@@ -49,16 +50,17 @@ void Level::actionManager()
 		pirate.setMoving(false);
 		pirate.setRotating(false);
 
-		int behaviour = rand() % 3 + 1;
-		if (behaviour == 1)
+		int currBehaviour = rand() % 3 + 1;
+		
+		if (currBehaviour == 1)
 		{
 			pirate.setMoving(true);
 		}
-		else if (behaviour == 2)
+		else if (currBehaviour == 2)
 		{
 			pirate.setRotating(true);
 		}
-		else if (behaviour == 3)
+		else if (currBehaviour == 3)
 		{
 			enemyShoot();
 		}

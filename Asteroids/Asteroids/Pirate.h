@@ -32,4 +32,5 @@ public:
 	void friction();
 	void screenWrap();
 	void rotate();
+
 };
