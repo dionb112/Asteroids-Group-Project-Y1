@@ -6,3 +6,8 @@ static	const	int		SCR_W			=	800;
 static	const	int		SCR_H			=	480;
 static	const	int		MAX_ASTEROIDS	=	2;
 static	const	int		OFF_SCR_OFFSET	= 150;
+
+struct LevelData
+{
+
+};
