@@ -16,6 +16,7 @@ public:
 	void update();
 	void render(sf::RenderWindow &window);
 	sf::Sprite getBody();
+	int getRadius();
 
 	void reset();
 
@@ -49,6 +50,8 @@ private:
 	int m_currFrame;
 	int m_frameDelay;
 	bool m_isMoving;
+
+	int m_radius;
 
 	//Current stats for level
 	double m_acceleration;

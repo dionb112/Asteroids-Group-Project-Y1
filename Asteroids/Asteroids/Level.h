@@ -41,6 +41,7 @@ public:
 
 	void render(sf::RenderWindow &window);
 	void drawAsteroids(sf::RenderWindow &window);
+
 	void setNoOfAsteroids();
 	void setAsteroidType();
 	void initAsteroids();
@@ -53,4 +54,10 @@ public:
 	void addSmall();
 	void addTiny();
 	void spawnGem();
+
+	void collisions();
+	void playerCollisions();
+	void bulletCollsions();
+	void pirateCollsions();
+	bool isColliding(int x1, int y1, int rad1, int x2, int y2, int rad2);
 };

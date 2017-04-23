@@ -8,6 +8,7 @@ Bullet::Bullet()
 
 	m_body.setFillColor(sf::Color::White);
 	m_body.setRadius(2);
+	m_radius = 2;
 }
 
 Bullet::~Bullet()
@@ -36,6 +37,11 @@ void Bullet::setVelocity(double angle)
 sf::CircleShape Bullet::getBody()
 {
 	return m_body;
+}
+
+int Bullet::getRadius()
+{
+	return m_radius;
 }
 
 bool Bullet::getActive()
