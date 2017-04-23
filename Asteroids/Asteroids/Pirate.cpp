@@ -26,17 +26,48 @@ void Pirate::init()
 
 	m_sprite.setOrigin(32, 32);
 
-	//m_sprite.setPosition(rand() % (SCR_W + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET, rand() % (SCR_H + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET);
+	//m_sprite.setPosition(rand() % (SCR_W + OFF_SCR_OFFSET) - OFF_SCR_OFFSET, rand() % (SCR_H + OFF_SCR_OFFSET) - OFF_SCR_OFFSET);
 	m_sprite.setPosition(100,100);
 
 	m_velocity = sf::Vector2f(0, 0);
 	m_turnRate = 4;
 	m_acceleration = 0.15;
 	m_rotation = 0;
+	m_isMoving = false;
+	m_isRotating = false;
+}
+
+void Pirate::setMoving(bool newBool)
+{
+	m_isMoving = newBool;
+}
+void Pirate::setRotating(bool newBool)
+{
+	m_isRotating = newBool;
+}
+
+sf::Sprite Pirate::getBody()
+{
+	return m_sprite;
+}
+
+double Pirate::getRotation()
+{
+	return m_rotation;
 }
 
 void Pirate::update()
 {
+	if (m_isMoving)
+	{
+		move();
+	}
+	if (m_isRotating)
+	{
+		rotate();
+	}
+	screenWrap();
+	friction();
 }
 
 void Pirate::render(sf::RenderWindow & window)
@@ -51,8 +82,57 @@ void Pirate::spawn()
 
 void Pirate::move()
 {
+	double x = std::sin(m_rotation * PI / 180.0);
+	double y = -std::cos(m_rotation * PI / 180.0);
+
+	m_accelerationVector = sf::Vector2f(x, y);
+
+	m_velocity.y += m_accelerationVector.y * m_acceleration;
+	m_velocity.x += m_accelerationVector.x * m_acceleration;
+
+
 }
+
+void Pirate::friction()
+{
+	m_velocity.x *= 0.99;
+	m_velocity.y *= 0.99;
+	m_sprite.move(m_velocity);
+}
+
 
 void Pirate::screenWrap()
 {
+	if (m_sprite.getPosition().x < 0)
+	{
+		m_sprite.setPosition(SCR_W, m_sprite.getPosition().y);
+	}
+	if (m_sprite.getPosition().x > SCR_W)
+	{
+		m_sprite.setPosition(0, m_sprite.getPosition().y);
+	}
+	if (m_sprite.getPosition().y < 0)
+	{
+		m_sprite.setPosition(m_sprite.getPosition().x, SCR_H);
+	}
+	if (m_sprite.getPosition().y > SCR_H)
+	{
+		m_sprite.setPosition(m_sprite.getPosition().x, 0);
+	}
+
+}
+
+void Pirate::rotate()
+{
+	int direction = rand() % 2 + 1;
+	if (direction == 1)
+	{
+		m_rotation -= m_turnRate;
+		m_sprite.setRotation(m_rotation);
+	}
+	else if (direction == 2)
+	{
+		m_rotation += m_turnRate;
+		m_sprite.setRotation(m_rotation);
+	}
 }

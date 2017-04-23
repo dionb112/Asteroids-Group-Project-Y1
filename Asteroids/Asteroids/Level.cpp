@@ -5,14 +5,18 @@ void Level::init()
 	player.init();
 	initAsteroids();
 	pirate.init();
+	m_counter = 0;
 }
 
 void Level::update()
 {
 	player.update();
 	playerBullet.update();
+	enemyBullet.update();
 	updateAsteroids();
 	gems.update();
+	pirate.update();
+	actionManager();
 
 	collisions();
 }
@@ -21,6 +25,7 @@ void Level::render(sf::RenderWindow & window)
 {
 	player.render(window);
 	playerBullet.render(window);
+	enemyBullet.render(window);
 	drawAsteroids(window);
 	gems.render(window);
 	pirate.render(window);
@@ -34,6 +39,40 @@ void Level::movePlayer()
 void Level::rotatePlayer(bool rotateLeft)
 {
 	player.rotate(rotateLeft);
+}
+
+void Level::actionManager()
+{
+	m_counter++;
+	if (m_counter == 120)
+	{
+		pirate.setMoving(false);
+		pirate.setRotating(false);
+
+		int behaviour = rand() % 3 + 1;
+		if (behaviour == 1)
+		{
+			pirate.setMoving(true);
+		}
+		else if (behaviour == 2)
+		{
+			pirate.setRotating(true);
+		}
+		else if (behaviour == 3)
+		{
+			enemyShoot();
+		}
+		m_counter = 0;
+	}
+}
+
+void Level::enemyShoot()
+{
+	if (!enemyBullet.getActive())
+	{
+		enemyBullet.setPosition(pirate.getBody().getPosition().x, pirate.getBody().getPosition().y);
+		enemyBullet.setVelocity(pirate.getRotation());
+	}
 }
 
 void Level::playerShoot()
