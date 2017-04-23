@@ -6,6 +6,7 @@ Gems::Gems()
 	{
 		isAlive[i] == false;
 	}
+	m_radius = 16;
 }
 void Gems::loadContent(int index)
 {
@@ -78,4 +79,9 @@ void Gems::spawn(int index, sf::Vector2f deadAsteroidPos)
 
 void Gems::rotate()
 {
+}
+
+int Gems::getRadius()
+{
+	return m_radius;
 }
