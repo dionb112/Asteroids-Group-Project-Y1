@@ -1,4 +1,5 @@
 #pragma once
+#include "Pirate.h"
 #include "Player.h"
 #include "Asteroids.h"
 #include "Bullet.h"
@@ -15,6 +16,7 @@ private:
 	Asteroids smallAsteroids[MAX_ASTEROIDS + 14];
 	Asteroids tinyAsteroids[MAX_ASTEROIDS + 34];
 	Gems gems;
+	Pirate pirate;
 	int m_noOfLarge;
 	int m_noOfMed;
 	int m_noOfSmall;
