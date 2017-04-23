@@ -12,6 +12,8 @@ void Level::update()
 	playerBullet.update();
 	updateAsteroids();
 	gems.update();
+
+	collisions();
 }
 
 void Level::render(sf::RenderWindow & window)
@@ -222,6 +224,51 @@ void Level::spawnGem()
 		gems.spawn(index, tinyAsteroids[m_noOfTiny].getPos());//spawn that gem
 	}
 
+}
+
+void Level::collisions()
+{
+	playerCollisions();
+	bulletCollsions();
+	pirateCollsions();
+}
+
+void Level::playerCollisions()
+{
+
+}
+
+void Level::bulletCollsions()
+{
+	int playerX = player.getBody().getPosition().x;
+	int playerY = player.getBody().getPosition().y;
+
+	int tempX = playerBullet.getBody().getPosition().x;
+	int tempY = playerBullet.getBody().getPosition().y;
+
+	if (isColliding(playerX, playerY, player.getRadius(), tempX, tempY, playerBullet.getRadius()))
+	{
+		std::cout << "hit" << std::endl;
+	}
+}
+
+void Level::pirateCollsions()
+{
+
+}
+
+bool Level::isColliding(int x1, int y1, int rad1, int x2, int y2, int rad2)
+{
+	int distance = std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+
+	if (distance < rad1 + rad2)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void Level::addMed()

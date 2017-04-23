@@ -28,6 +28,7 @@ void Player::init()
 	m_body.setPosition(sf::Vector2f(400, 280));
 	m_body.setRadius(10);
 	m_body.setFillColor(sf::Color::Green);
+	m_radius = 32;
 	m_velocity = sf::Vector2f(0, 0);
 	m_turnRate = 4;
 	m_acceleration = 0.15;
@@ -152,6 +153,11 @@ void Player::render(sf::RenderWindow & window)
 sf::Sprite Player::getBody()
 {
 	return m_playerSprite;
+}
+
+int Player::getRadius()
+{
+	return m_radius;
 }
 
 void Player::reset()
