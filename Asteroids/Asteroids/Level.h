@@ -11,6 +11,7 @@ private:
 	sf::Text m_screenText;
 	Player player;
 	Bullet playerBullet;
+	Bullet enemyBullet;
 	Asteroids largeAsteroids[MAX_ASTEROIDS];
 	Asteroids medAsteroids[MAX_ASTEROIDS + 4];
 	Asteroids smallAsteroids[MAX_ASTEROIDS + 14];
@@ -21,6 +22,7 @@ private:
 	int m_noOfMed;
 	int m_noOfSmall;
 	int m_noOfTiny;
+	int m_counter;
 
 public:
 	void init();
@@ -28,6 +30,8 @@ public:
 
 	void movePlayer();
 	void rotatePlayer(bool rotateLeft);
+	void actionManager();
+	void enemyShoot();
 	void playerShoot();
 
 	void fireUp();
