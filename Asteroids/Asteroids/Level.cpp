@@ -252,6 +252,17 @@ void Level::bulletCollsions()
 	{
 		std::cout << "hit" << std::endl;
 	}
+
+	for (int i = 0; i < 2; i++)
+	{
+		int astX = largeAsteroids[i].getPos().x;
+		int astY = largeAsteroids[i].getPos().y;
+
+		if (isColliding(playerX, playerY, player.getRadius(), astX, astY, largeAsteroids[i].getRadius()))
+		{
+			std::cout << "hit" << std::endl;
+		}
+	}
 }
 
 void Level::pirateCollsions()
