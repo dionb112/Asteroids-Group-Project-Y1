@@ -6,6 +6,7 @@ Gems::Gems()
 	{
 		isAlive[i] == false;
 	}
+	m_radius = 16;
 }
 void Gems::loadContent(int index)
 {
@@ -86,4 +87,9 @@ void Gems::rotate()
 			m_bodies[i].rotate(1);
 		}
 	}
+}
+
+int Gems::getRadius()
+{
+	return m_radius;
 }

@@ -8,7 +8,7 @@ class Gems
 	sf::Sprite m_bodies[5];
 
 	bool isAlive[5];
-
+	int m_radius;
 
 public:
 	Gems();
@@ -18,4 +18,5 @@ public:
 	void render(sf::RenderWindow &window);
 	void spawn(int index, sf::Vector2f deadAsteroidPos);
 	void rotate();
+	int getRadius();
 };
