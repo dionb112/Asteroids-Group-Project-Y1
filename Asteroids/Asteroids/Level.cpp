@@ -272,7 +272,12 @@ void Level::spawnGem()
 void Level::collisions()
 {
 	playerCollisions();
-	bulletCollsions();
+
+	if (playerBullet.getActive())
+	{
+		bulletCollsions();
+	}
+
 	pirateCollsions();
 }
 
