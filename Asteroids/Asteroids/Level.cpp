@@ -344,7 +344,7 @@ void Level::bulletCollsions()
 
 		if (isColliding(bulletX, bulletY, playerBullet.getRadius(), astX, astY, largeAsteroids[i].getRadius()))
 		{
-			std::cout << "hit" << std::endl;
+			//std::cout << "hit" << std::endl;
 		}
 	}
 	for (int i = 0; i < 6; i++)
@@ -354,7 +354,7 @@ void Level::bulletCollsions()
 
 		if (isColliding(bulletX, bulletY, playerBullet.getRadius(), astX, astY, medAsteroids[i].getRadius()))
 		{
-			std::cout << "hit" << std::endl;
+			//std::cout << "hit" << std::endl;
 		}
 	}
 	for (int i = 0; i < 16; i++)
@@ -364,7 +364,7 @@ void Level::bulletCollsions()
 
 		if (isColliding(bulletX, bulletY, playerBullet.getRadius(), astX, astY, smallAsteroids[i].getRadius()))
 		{
-			std::cout << "hit" << std::endl;
+			//std::cout << "hit" << std::endl;
 		}
 	}
 	for (int i = 0; i < 36; i++)
@@ -374,7 +374,7 @@ void Level::bulletCollsions()
 
 		if (isColliding(bulletX, bulletY, playerBullet.getRadius(), astX, astY, tinyAsteroids[i].getRadius()))
 		{
-			std::cout << "hit" << std::endl;
+			//std::cout << "hit" << std::endl;
 		}
 	}
 }

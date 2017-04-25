@@ -16,7 +16,9 @@ class Pirate
 	double m_acceleration;
 	bool m_isMoving;
 	bool m_isRotating;
+
 public:
+
 	Pirate();
 	~Pirate();
 	void loadContent();

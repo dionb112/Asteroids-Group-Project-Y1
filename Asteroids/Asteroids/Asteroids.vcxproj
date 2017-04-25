@@ -30,6 +30,7 @@
     <ClInclude Include="License.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="MyVector3D.h" />
     <ClInclude Include="Pirate.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Splash.h" />
@@ -46,6 +47,7 @@
     <ClCompile Include="License.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="MyVector3D.cpp" />
     <ClCompile Include="Pirate.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Splash.cpp" />
