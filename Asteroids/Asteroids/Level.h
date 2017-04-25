@@ -65,5 +65,5 @@ public:
 	void playerCollisions();
 	void bulletCollsions();
 	void pirateCollsions();
-	bool isColliding(int x1, int y1, int rad1, int x2, int y2, int rad2);
+	bool isColliding(MyVector3D pos1, int rad1, MyVector3D pos2, int rad2);
 };

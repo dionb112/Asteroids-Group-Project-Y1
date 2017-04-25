@@ -70,20 +70,20 @@ void Level::actionManager()
 
 void Level::enemyShoot()
 {
-	if (!enemyBullet.getActive())
+	/*if (!enemyBullet.getActive())
 	{
 		enemyBullet.setPosition(pirate.getBody().getPosition().x, pirate.getBody().getPosition().y);
 		enemyBullet.setVelocity(pirate.getRotation());
-	}
+	}*/
 }
 
 void Level::playerShoot()
 {
-	/*if (!playerBullet.getActive())
+	if (!playerBullet.getActive())
 	{
-		playerBullet.setPosition(player.getBody().getPosition().x, player.getBody().getPosition().y);
+		playerBullet.setPosition(player.getPos());
 		playerBullet.setVelocity(player.getRotation());
-	}*/
+	}
 }
 
 void Level::fireUp()
@@ -341,49 +341,49 @@ void Level::playerCollisions()
 
 void Level::bulletCollsions()
 {
-	int bulletX = playerBullet.getBody().getPosition().x;
-	int bulletY = playerBullet.getBody().getPosition().y;
+	//int bulletX = playerBullet.getBody().getPosition().x;
+	//int bulletY = playerBullet.getBody().getPosition().y;
 
-	for (int i = 0; i < 2; i++)
-	{
-		int astX = largeAsteroids[i].getPos().x;
-		int astY = largeAsteroids[i].getPos().y;
+	//for (int i = 0; i < 2; i++)
+	//{
+	//	int astX = largeAsteroids[i].getPos().x;
+	//	int astY = largeAsteroids[i].getPos().y;
 
-		if (isColliding(bulletX, bulletY, playerBullet.getRadius(), astX, astY, largeAsteroids[i].getRadius()))
-		{
-			//std::cout << "hit" << std::endl;
-		}
-	}
-	for (int i = 0; i < 6; i++)
-	{
-		int astX = medAsteroids[i].getPos().x;
-		int astY = medAsteroids[i].getPos().y;
+	//	if (isColliding(bulletX, bulletY, playerBullet.getRadius(), astX, astY, largeAsteroids[i].getRadius()))
+	//	{
+	//		//std::cout << "hit" << std::endl;
+	//	}
+	//}
+	//for (int i = 0; i < 6; i++)
+	//{
+	//	int astX = medAsteroids[i].getPos().x;
+	//	int astY = medAsteroids[i].getPos().y;
 
-		if (isColliding(bulletX, bulletY, playerBullet.getRadius(), astX, astY, medAsteroids[i].getRadius()))
-		{
-			//std::cout << "hit" << std::endl;
-		}
-	}
-	for (int i = 0; i < 16; i++)
-	{
-		int astX = smallAsteroids[i].getPos().x;
-		int astY = smallAsteroids[i].getPos().y;
+	//	if (isColliding(bulletX, bulletY, playerBullet.getRadius(), astX, astY, medAsteroids[i].getRadius()))
+	//	{
+	//		//std::cout << "hit" << std::endl;
+	//	}
+	//}
+	//for (int i = 0; i < 16; i++)
+	//{
+	//	int astX = smallAsteroids[i].getPos().x;
+	//	int astY = smallAsteroids[i].getPos().y;
 
-		if (isColliding(bulletX, bulletY, playerBullet.getRadius(), astX, astY, smallAsteroids[i].getRadius()))
-		{
-			//std::cout << "hit" << std::endl;
-		}
-	}
-	for (int i = 0; i < 36; i++)
-	{
-		int astX = tinyAsteroids[i].getPos().x;
-		int astY = tinyAsteroids[i].getPos().y;
+	//	if (isColliding(bulletX, bulletY, playerBullet.getRadius(), astX, astY, smallAsteroids[i].getRadius()))
+	//	{
+	//		//std::cout << "hit" << std::endl;
+	//	}
+	//}
+	//for (int i = 0; i < 36; i++)
+	//{
+	//	int astX = tinyAsteroids[i].getPos().x;
+	//	int astY = tinyAsteroids[i].getPos().y;
 
-		if (isColliding(bulletX, bulletY, playerBullet.getRadius(), astX, astY, tinyAsteroids[i].getRadius()))
-		{
-			//std::cout << "hit" << std::endl;
-		}
-	}
+	//	if (isColliding(bulletX, bulletY, playerBullet.getRadius(), astX, astY, tinyAsteroids[i].getRadius()))
+	//	{
+	//		//std::cout << "hit" << std::endl;
+	//	}
+	//}
 }
 
 void Level::pirateCollsions()
@@ -391,9 +391,12 @@ void Level::pirateCollsions()
 
 }
 
-bool Level::isColliding(int x1, int y1, int rad1, int x2, int y2, int rad2)
+bool Level::isColliding(MyVector3D pos1, int rad1, MyVector3D pos2, int rad2)
 {
-	int distance = std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+	MyVector3D pos3 = pos1 - pos2;
+	int distance = pos3.length();
+
+	std::cout << distance << std::endl;
 
 	if (distance < rad1 + rad2)
 	{

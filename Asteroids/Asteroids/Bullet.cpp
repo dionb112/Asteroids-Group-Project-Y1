@@ -15,9 +15,9 @@ Bullet::~Bullet()
 {
 }
 
-void Bullet::setPosition(double x, double y)
+void Bullet::setPosition(MyVector3D pos)
 {
-	m_body.setPosition(x, y);
+	m_position = pos;
 }
 
 void Bullet::setVelocity(double angle)
@@ -25,18 +25,17 @@ void Bullet::setVelocity(double angle)
 	double x = std::sin(angle * PI / 180.0);
 	double y = -std::cos(angle * PI / 180.0);
 
-	m_velocity = sf::Vector2f(x, y);
+	m_velocity = MyVector3D(x, y, 0);
 
-	m_velocity.y += m_velocity.y * m_speed;
-	m_velocity.x += m_velocity.x * m_speed;
+	m_velocity += m_velocity * m_speed;
 
 	m_timer = 60;
 	m_active = true;
 }
 
-sf::CircleShape Bullet::getBody()
+MyVector3D Bullet::getPos()
 {
-	return m_body;
+	return m_position;
 }
 
 int Bullet::getRadius()
@@ -53,7 +52,7 @@ void Bullet::update()
 {
 	if (m_active)
 	{
-		m_body.move(m_velocity);
+		m_position += m_velocity;
 		screenWrap();
 
 		m_timer--;
@@ -66,21 +65,21 @@ void Bullet::update()
 
 void Bullet::screenWrap()
 {
-	if (m_body.getPosition().x < 0)
+	if (m_position.X() < 0)
 	{
-		m_body.setPosition(800, m_body.getPosition().y);
+		m_position = MyVector3D(SCR_W, m_position.Y(), 0);
 	}
-	if (m_body.getPosition().x > 800)
+	if (m_position.X() > SCR_W)
 	{
-		m_body.setPosition(0, m_body.getPosition().y);
+		m_position = MyVector3D(0, m_position.Y(), 0);
 	}
-	if (m_body.getPosition().y < 0)
+	if (m_position.Y() < 0)
 	{
-		m_body.setPosition(m_body.getPosition().x, 480);
+		m_position = MyVector3D(m_position.Y(), SCR_H, 0);
 	}
-	if (m_body.getPosition().y > 480)
+	if (m_position.Y() > SCR_H)
 	{
-		m_body.setPosition(m_body.getPosition().x, 0);
+		m_position = MyVector3D(m_position.Y(), 0, 0);
 	}
 }
 
@@ -88,6 +87,7 @@ void Bullet::render(sf::RenderWindow & window)
 {
 	if (m_active)
 	{
+		m_body.setPosition(m_position);
 		window.draw(m_body);
 	}
 }

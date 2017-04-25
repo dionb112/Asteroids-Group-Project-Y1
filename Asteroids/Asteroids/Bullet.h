@@ -10,9 +10,9 @@ public:
 	Bullet();
 	~Bullet();
 
-	void setPosition(double x, double y);
+	void setPosition(MyVector3D pos);
 	void setVelocity(double angle);
-	sf::CircleShape getBody();
+	MyVector3D getPos();
 	int getRadius();
 	bool getActive();
 	void update();
@@ -21,8 +21,9 @@ public:
 
 private:
 	sf::CircleShape m_body;
+	MyVector3D m_position;
 	int m_radius;
-	sf::Vector2f m_velocity;
+	MyVector3D m_velocity;
 	double m_speed;
 	bool m_active;
 	int m_timer;
