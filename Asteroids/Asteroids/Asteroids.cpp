@@ -3,42 +3,17 @@
 Asteroids::Asteroids()
 {
 	//TODO: Dion, maybe the max speed is too high at the moment
-	m_speed.x = float(rand()) / float(RAND_MAX) * 5 - 2.5f ;
-	m_speed.y = float(rand()) / float(RAND_MAX) * 5 - 2.5f ;
-	setAllOffScr(m_largePos, m_largeSprite);
-	setAllOffScr(m_medPos, m_medSprite);
-	setAllOffScr(m_smallPos, m_smallSprite);
-	setAllOffScr(m_tinyPos, m_tinySprite);
+	double x = float(rand()) / float(RAND_MAX) * 5 - 2.5f ;
+	double y = float(rand()) / float(RAND_MAX) * 5 - 2.5f ;
+	m_speed = MyVector3D(x, y, 0);
+	spawnAsteroids();
 }
 
 Asteroids::~Asteroids()
 {
 }
 
-sf::Vector2f Asteroids::getPos()
-{
-	sf::Vector2f pos;
-	switch (m_type)
-	{
-	case 1:
-		pos = m_largePos;
-		pos += {64, 64};
-		break;
-	case 2:
-		pos = m_medPos;
-		pos += {48, 48};
-		break;
-	case 3:
-		pos = m_smallPos;
-		pos += {32, 32};
-		break;
-	case 4:
-		pos = m_tinyPos;
-		pos += {16, 16};
-		break;
-	}
-	return pos;
-}
+
 
 int Asteroids::getRadius()
 {
@@ -61,6 +36,7 @@ void Asteroids::loadContent()
 			std::cout << "Error loading big asteroid texture" << std::endl;
 		}
 		m_largeSprite.setTexture(m_largeTexture);
+		m_largeSprite.setOrigin(64, 64);
 		break;
 	case 2:
 		if (!m_medTexture.loadFromFile("ASSETS/IMAGES/asteroid2.png"))
@@ -68,6 +44,7 @@ void Asteroids::loadContent()
 			std::cout << "Error loading medium asteroid texture" << std::endl;
 		}
 		m_medSprite.setTexture(m_medTexture);
+		m_largeSprite.setOrigin(48, 48);
 		break;
 	case 3:
 		if (!m_smallTexture.loadFromFile("ASSETS/IMAGES/asteroid1.png"))
@@ -75,6 +52,7 @@ void Asteroids::loadContent()
 			std::cout << "Error loading small asteroid texture" << std::endl;
 		}
 		m_smallSprite.setTexture(m_smallTexture);
+		m_largeSprite.setOrigin(32, 32);
 		break;
 	case 4:
 		if (!m_tinyTexture.loadFromFile("ASSETS/IMAGES/asteroid0.png"))
@@ -82,6 +60,7 @@ void Asteroids::loadContent()
 			std::cout << "Error loading tiny asteroid texture" << std::endl;
 		}
 		m_tinySprite.setTexture(m_tinyTexture);
+		m_largeSprite.setOrigin(16, 16);
 		break;
 	}
 }
@@ -89,29 +68,9 @@ void Asteroids::loadContent()
 ///TODO: Dion, ensure asteroids do not spawn in the centre of the screen where the player is
 void Asteroids::spawnAsteroids()
 {
-	switch (m_type)
-	{
-	case 1:
-		m_largePos.x = rand() % (SCR_W + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
-		m_largePos.y = rand() % (SCR_H + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
-		m_largeSprite.setPosition(m_largePos);
-		break;
-	case 2:
-		m_medPos.x = rand() % (SCR_W + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
-		m_medPos.y = rand() % (SCR_H + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
-		m_medSprite.setPosition(m_medPos);
-		break;
-	case 3:
-		m_smallPos.x = rand() % (SCR_W + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
-		m_smallPos.y = rand() % (SCR_H + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
-		m_smallSprite.setPosition(m_smallPos);
-		break;
-	case 4:
-		m_tinyPos.x = rand() % (SCR_W + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
-		m_tinyPos.y = rand() % (SCR_H + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
-		m_tinySprite.setPosition(m_tinyPos);
-		break;
-	}
+	double x = rand() % (SCR_W + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
+	double y = rand() % (SCR_H + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
+	m_position = MyVector3D(x, y, 0);
 }
 
 void Asteroids::setupType(int type)
@@ -133,12 +92,13 @@ void Asteroids::setupType(int type)
 		m_radius = 16;
 		break;
 	}
+
+	loadContent();
 }
 
 
 void Asteroids::init()
 {
-	loadContent(); 
 	spawnAsteroids();
 }
 
@@ -147,15 +107,19 @@ void Asteroids::render(sf::RenderWindow & window)
 	switch (m_type)
 	{
 	case 1:
+		m_largeSprite.setPosition(m_position);
 		window.draw(m_largeSprite);
 		break;
 	case 2:
+		m_medSprite.setPosition(m_position);
 		window.draw(m_medSprite);
 		break;
 	case 3:
+		m_smallSprite.setPosition(m_position);
 		window.draw(m_smallSprite);
 		break;
 	case 4:
+		m_tinySprite.setPosition(m_position);
 		window.draw(m_tinySprite);
 		break;
 	}
@@ -169,25 +133,7 @@ void Asteroids::update()
 
 void Asteroids::movement()
 {
-	switch (m_type)
-	{
-	case 1:
-		m_largePos += m_speed;
-		m_largeSprite.setPosition(m_largePos);
-		break;
-	case 2:
-		m_medPos += m_speed;
-		m_medSprite.setPosition(m_medPos);
-		break;
-	case 3:
-		m_smallPos += m_speed;
-		m_smallSprite.setPosition(m_smallPos);
-		break;
-	case 4:
-		m_tinyPos += m_speed;
-		m_tinySprite.setPosition(m_tinyPos);
-		break;
-	}
+	m_position += m_speed;
 }
 ///TODO: Dion, maybe where type is set have a local variable that takes the place
 ///of the sprite and pos variable for that type, then pass those into all these functions
@@ -195,95 +141,25 @@ void Asteroids::movement()
 ///The mess / ineficiency is most evident in this next function. But works for now
 void Asteroids::screenWrap()
 {
-	switch (m_type)
+	if (m_position.X() < 0)
 	{
-	case 1:
-		if (m_largePos.x < -OFF_SCR_OFFSET)
-		{
-			m_largePos.x=SCR_W + OFF_SCR_OFFSET;
-			m_largeSprite.setPosition(m_largePos);
-		}
-		if (m_largePos.x > SCR_W + OFF_SCR_OFFSET)
-		{
-			m_largePos.x = -OFF_SCR_OFFSET;
-			m_largeSprite.setPosition(m_largePos);
-		}
-		if (m_largePos.y < -OFF_SCR_OFFSET)
-		{
-			m_largePos.y = SCR_H + OFF_SCR_OFFSET;
-			m_largeSprite.setPosition(m_largePos);
-		}
-		if (m_largePos.y > SCR_H + OFF_SCR_OFFSET)
-		{
-			m_largePos.y = -OFF_SCR_OFFSET;
-			m_largeSprite.setPosition(m_largePos);
-		}
-		break;
-	case 2:
-		if (m_medPos.x < -OFF_SCR_OFFSET)
-		{
-			m_medPos.x = SCR_W + OFF_SCR_OFFSET;
-			m_medSprite.setPosition(m_medPos);
-		}
-		if (m_medPos.x > SCR_W + OFF_SCR_OFFSET)
-		{
-			m_largePos.x = -OFF_SCR_OFFSET;
-			m_medSprite.setPosition(m_medPos);
-		}
-		if (m_medPos.y < -OFF_SCR_OFFSET)
-		{
-			m_medPos.y = SCR_H + OFF_SCR_OFFSET;
-			m_medSprite.setPosition(m_medPos);
-		}
-		if (m_medPos.y > SCR_H + OFF_SCR_OFFSET)
-		{
-			m_medPos.y = -OFF_SCR_OFFSET;
-			m_medSprite.setPosition(m_medPos);
-		}
-		break;
-	case 3:
-		if (m_smallPos.x < -OFF_SCR_OFFSET)
-		{
-			m_smallPos.x = SCR_W + OFF_SCR_OFFSET;
-			m_smallSprite.setPosition(m_smallPos);
-		}
-		if (m_smallPos.x > SCR_W + OFF_SCR_OFFSET)
-		{
-			m_smallPos.x = -OFF_SCR_OFFSET;
-			m_smallSprite.setPosition(m_smallPos);
-		}
-		if (m_smallPos.y < -OFF_SCR_OFFSET)
-		{
-			m_smallPos.y = SCR_H + OFF_SCR_OFFSET;
-			m_smallSprite.setPosition(m_smallPos);
-		}
-		if (m_smallPos.y > SCR_H + OFF_SCR_OFFSET)
-		{
-			m_smallPos.y = -OFF_SCR_OFFSET;
-			m_smallSprite.setPosition(m_smallPos);
-		}
-		break;
-	case 4:
-		if (m_tinyPos.x < -OFF_SCR_OFFSET)
-		{
-			m_tinyPos.x = SCR_W + OFF_SCR_OFFSET;
-			m_tinySprite.setPosition(m_tinyPos);
-		}
-		if (m_tinyPos.x > SCR_W + OFF_SCR_OFFSET)
-		{
-			m_tinyPos.x = -OFF_SCR_OFFSET;
-			m_tinySprite.setPosition(m_tinyPos);
-		}
-		if (m_tinyPos.y < -OFF_SCR_OFFSET)
-		{
-			m_tinyPos.y = SCR_H + OFF_SCR_OFFSET;
-			m_tinySprite.setPosition(m_tinyPos);
-		}
-		if (m_tinyPos.y > SCR_H + OFF_SCR_OFFSET)
-		{
-			m_tinyPos.y = -OFF_SCR_OFFSET;
-			m_tinySprite.setPosition(m_tinyPos);
-		}
-		break;
+		m_position = MyVector3D(SCR_W, m_position.Y(), 0);
 	}
+	if (m_position.X() > SCR_W)
+	{
+		m_position = MyVector3D(0, m_position.Y(), 0);
+	}
+	if (m_position.Y() < 0)
+	{
+		m_position = MyVector3D(m_position.Y(), SCR_H, 0);
+	}
+	if (m_position.Y() > SCR_H)
+	{
+		m_position = MyVector3D(m_position.Y(), 0, 0);
+	}
+}
+
+MyVector3D Asteroids::getPos()
+{
+	return m_position;
 }

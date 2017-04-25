@@ -283,55 +283,37 @@ void Level::collisions()
 
 void Level::playerCollisions()
 {
-	/*int playerX = player.getBody().getPosition().x;
-	int playerY = player.getBody().getPosition().y;
-
 	for (int i = 0; i < 2; i++)
 	{
-		int astX = largeAsteroids[i].getPos().x;
-		int astY = largeAsteroids[i].getPos().y;
-
-		if (isColliding(playerX, playerY, player.getRadius(), astX, astY, largeAsteroids[i].getRadius()))
+		if (isColliding(player.getPos(), player.getRadius(), largeAsteroids[i].getPos(), largeAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
 		}
 	}
 	for (int i = 0; i < 6; i++)
 	{
-		int astX = medAsteroids[i].getPos().x;
-		int astY = medAsteroids[i].getPos().y;
-
-		if (isColliding(playerX, playerY, player.getRadius(), astX, astY, medAsteroids[i].getRadius()))
+		if (isColliding(player.getPos(), player.getRadius(), medAsteroids[i].getPos(), medAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
 		}
 	}
 	for (int i = 0; i < 16; i++)
 	{
-		int astX = smallAsteroids[i].getPos().x;
-		int astY = smallAsteroids[i].getPos().y;
-
-		if (isColliding(playerX, playerY, player.getRadius(), astX, astY, smallAsteroids[i].getRadius()))
+		if (isColliding(player.getPos(), player.getRadius(), smallAsteroids[i].getPos(), smallAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
 		}
 	}
 	for (int i = 0; i < 36; i++)
 	{
-		int astX = tinyAsteroids[i].getPos().x;
-		int astY = tinyAsteroids[i].getPos().y;
-
-		if (isColliding(playerX, playerY, player.getRadius(), astX, astY, tinyAsteroids[i].getRadius()))
+		if (isColliding(player.getPos(), player.getRadius(), tinyAsteroids[i].getPos(), tinyAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
 		}
 	}
 
-	for (int i = 0; i < 5; i++)
+	/*for (int i = 0; i < 5; i++)
 	{
-		int gemX = gems.getPos(i).x;
-		int gemY = gems.getPos(i).y;
-
 		if (isColliding(playerX, playerY, player.getRadius(), gemX, gemY, gems.getRadius()))
 		{
 			std::cout << "hit" << std::endl;
@@ -395,8 +377,6 @@ bool Level::isColliding(MyVector3D pos1, int rad1, MyVector3D pos2, int rad2)
 {
 	MyVector3D pos3 = pos1 - pos2;
 	int distance = pos3.length();
-
-	std::cout << distance << std::endl;
 
 	if (distance < rad1 + rad2)
 	{

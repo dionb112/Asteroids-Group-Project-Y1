@@ -3,9 +3,11 @@
 #include <iostream>
 #include <SFML\Graphics.hpp>
 #include "Globals.h"
+#include "MyVector3D.h"
+
 class Asteroids
 {
-	sf::Vector2f m_speed;
+	MyVector3D m_speed;
 
 	sf::Texture m_largeTexture;
 	sf::Texture m_medTexture;
@@ -17,13 +19,11 @@ class Asteroids
 	sf::Sprite m_smallSprite;
 	sf::Sprite m_tinySprite;
 
-	sf::Vector2f m_largePos;
-	sf::Vector2f m_medPos;
-	sf::Vector2f m_smallPos;
-	sf::Vector2f m_tinyPos;
+	MyVector3D m_position;
 	
 	int m_type;
 
+	bool m_active;
 	int m_radius;
 public:
 	Asteroids();
@@ -36,7 +36,7 @@ public:
 	void setupType(int type);
 	void movement();
 	void screenWrap();
-	sf::Vector2f getPos();
+	MyVector3D getPos();
 	int getRadius();
 	void setAllOffScr(sf::Vector2f &pos, sf::Sprite &sprit);
 };
