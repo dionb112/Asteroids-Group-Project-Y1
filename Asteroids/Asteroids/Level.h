@@ -4,7 +4,9 @@
 #include "Asteroids.h"
 #include "Bullet.h"
 #include "Gems.h"
+#include "MyVector3D.h"
 #include "SFML/Graphics.hpp"
+
 class Level
 {
 private:

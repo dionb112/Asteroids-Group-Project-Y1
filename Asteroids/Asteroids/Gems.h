@@ -2,6 +2,8 @@
 #include <iostream>
 #include <SFML\Graphics.hpp>
 #include "Globals.h"
+#include "MyVector3D.h"
+
 class Gems
 {
 	sf::Texture m_texture;

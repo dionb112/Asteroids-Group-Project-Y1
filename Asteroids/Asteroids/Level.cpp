@@ -79,11 +79,11 @@ void Level::enemyShoot()
 
 void Level::playerShoot()
 {
-	if (!playerBullet.getActive())
+	/*if (!playerBullet.getActive())
 	{
 		playerBullet.setPosition(player.getBody().getPosition().x, player.getBody().getPosition().y);
 		playerBullet.setVelocity(player.getRotation());
-	}
+	}*/
 }
 
 void Level::fireUp()
@@ -283,7 +283,7 @@ void Level::collisions()
 
 void Level::playerCollisions()
 {
-	int playerX = player.getBody().getPosition().x;
+	/*int playerX = player.getBody().getPosition().x;
 	int playerY = player.getBody().getPosition().y;
 
 	for (int i = 0; i < 2; i++)
@@ -336,7 +336,7 @@ void Level::playerCollisions()
 		{
 			std::cout << "hit" << std::endl;
 		}
-	}
+	}*/
 }
 
 void Level::bulletCollsions()

@@ -23,11 +23,8 @@ void Player::init()
 	m_playerSprite.setTextureRect(m_playerRect);
 
 	m_playerSprite.setOrigin(32, 32);
-	m_playerSprite.setPosition(400, 240);
+	m_position = MyVector3D(400, 240, 0);
 
-	m_body.setPosition(sf::Vector2f(400, 280));
-	m_body.setRadius(10);
-	m_body.setFillColor(sf::Color::Green);
 	m_radius = 32;
 	m_velocity = sf::Vector2f(0, 0);
 	m_turnRate = 4;
@@ -48,7 +45,7 @@ void Player::init()
 
 void Player::update()
 {
-	m_playerSprite.move(m_velocity);
+	m_position += m_velocity;
 	friction();
 	animate();
 	screenWrap();
@@ -56,27 +53,26 @@ void Player::update()
 
 void Player::friction()
 {
-	m_velocity.x *= 0.99;
-	m_velocity.y *= 0.99;
+	m_velocity = m_velocity * 0.99;
 }
 
 void Player::screenWrap()
 {
-	if (m_playerSprite.getPosition().x < 0)
+	if (m_position.X() < 0)
 	{
-		m_playerSprite.setPosition(SCR_W, m_playerSprite.getPosition().y);
+		m_position = MyVector3D(SCR_W, m_position.Y(), 0);
 	}
-	if (m_playerSprite.getPosition().x > SCR_W)
+	if (m_position.X() > SCR_W)
 	{
-		m_playerSprite.setPosition(0, m_playerSprite.getPosition().y);
+		m_position = MyVector3D(0, m_position.Y(), 0);
 	}
-	if (m_playerSprite.getPosition().y < 0)
+	if (m_position.Y() < 0)
 	{
-		m_playerSprite.setPosition(m_playerSprite.getPosition().x, SCR_H);
+		m_position = MyVector3D(m_position.Y(), SCR_H, 0);
 	}
-	if (m_playerSprite.getPosition().y > SCR_H)
+	if (m_position.Y() > SCR_H)
 	{
-		m_playerSprite.setPosition(m_playerSprite.getPosition().x, 0);
+		m_position = MyVector3D(m_position.Y(), 0, 0);
 	}
 }
 
@@ -147,12 +143,13 @@ void Player::fuelUp()
 
 void Player::render(sf::RenderWindow & window)
 {
+	m_playerSprite.setPosition(m_position);
 	window.draw(m_playerSprite);
 }
 
-sf::Sprite Player::getBody()
+MyVector3D Player::getPos()
 {
-	return m_playerSprite;
+	return m_position;
 }
 
 int Player::getRadius()
@@ -162,7 +159,7 @@ int Player::getRadius()
 
 void Player::reset()
 {
-	m_playerSprite.setPosition(SCR_W / 2, SCR_H / 2);
+	m_position = MyVector3D(SCR_W / 2, SCR_H / 2, 0);
 	m_acceleration = m_boostLevel * 0.1;
 	m_fuel = 300 + m_fuelLevel * 50;
 }
@@ -174,10 +171,9 @@ void Player::move()
 		double x = std::sin(m_rotation * PI / 180.0);
 		double y = -std::cos(m_rotation * PI / 180.0);
 
-		m_accelerationVector = sf::Vector2f(x, y);
+		m_accelerationVector = MyVector3D(x, y, 0);
 
-		m_velocity.y += m_accelerationVector.y * m_acceleration;
-		m_velocity.x += m_accelerationVector.x * m_acceleration;
+		m_velocity += m_accelerationVector * m_acceleration;
 
 		m_fuel--;
 		m_isMoving = true;

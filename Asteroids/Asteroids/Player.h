@@ -4,6 +4,7 @@
 #include <math.h>
 #include "SFML/Graphics.hpp"
 #include "Globals.h"
+#include "MyVector3D.h"
 
 
 class Player
@@ -15,7 +16,7 @@ public:
 	void init();
 	void update();
 	void render(sf::RenderWindow &window);
-	sf::Sprite getBody();
+	MyVector3D getPos();
 	int getRadius();
 
 	void reset();
@@ -41,11 +42,11 @@ private:
 	sf::Sprite m_playerSprite;
 	sf::IntRect m_playerRect;
 
-	sf::CircleShape m_body;
 	double m_rotation;
 	double m_turnRate;
-	sf::Vector2f m_velocity;
-	sf::Vector2f m_accelerationVector;
+	MyVector3D m_position;
+	MyVector3D m_velocity;
+	MyVector3D m_accelerationVector;
 
 	int m_currFrame;
 	int m_frameDelay;
