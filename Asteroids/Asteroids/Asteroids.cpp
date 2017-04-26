@@ -149,11 +149,8 @@ void Asteroids::render(sf::RenderWindow & window)
 
 void Asteroids::update()
 {
-	if (m_isActive)
-	{
-		movement();
-		screenWrap();
-	}
+	movement();
+	screenWrap();
 }
 
 void Asteroids::movement()
@@ -181,9 +178,6 @@ void Asteroids::screenWrap()
 	}
 }
 
-void Asteroids::init()
-{
-}
 
 MyVector3D Asteroids::getPos()
 {
