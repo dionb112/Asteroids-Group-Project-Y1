@@ -443,6 +443,7 @@ void Level::addMed(int deadLarge)
 			medAsteroids[i].setPos(largeAsteroids[deadLarge].getPos());
 			medAsteroids[i].setActive(true);
 			std::cout << "2 med added" << std::endl;
+			counter++;
 		}
 	}
 }
@@ -459,6 +460,7 @@ void Level::addSmall(int deadMed)
 			smallAsteroids[i].setPos(medAsteroids[deadMed].getPos());
 			smallAsteroids[i].setActive(true);
 			std::cout << "2 small added" << std::endl;
+			counter++;
 		}
 	}
 }
