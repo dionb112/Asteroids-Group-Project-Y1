@@ -41,5 +41,5 @@ public:
 	void screenWrap();
 	MyVector3D getPos();
 	int getRadius();
-	void setAllOffScr(sf::Vector2f &pos, sf::Sprite &sprit);
+	void setOffScr();
 };

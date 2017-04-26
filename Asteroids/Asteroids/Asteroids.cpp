@@ -30,10 +30,24 @@ int Asteroids::getRadius()
 	return m_radius;
 }
 
-void Asteroids::setAllOffScr(sf::Vector2f &pos, sf::Sprite &sprite)
+void Asteroids::setOffScr()
 {
-	pos = { -OFF_SCR_OFFSET * 2, -OFF_SCR_OFFSET * 2 };
-	sprite.setPosition(pos);
+	m_position = { -OFF_SCR_OFFSET * 2, -OFF_SCR_OFFSET * 2, 0 };
+	switch (m_type)
+	{
+	case 1:
+		m_largeSprite.setPosition(m_position);
+		break;
+	case 2:
+		m_medSprite.setPosition(m_position);
+		break;
+	case 3:
+		m_smallSprite.setPosition(m_position);
+		break;
+	case 4:
+		m_tinySprite.setPosition(m_position);
+		break;
+	}
 }
 
 void Asteroids::loadContent()
@@ -114,8 +128,8 @@ void Asteroids::init()
 
 void Asteroids::render(sf::RenderWindow & window)
 {
-	//if (m_isActive)
-	//{
+	if (m_isActive)
+	{
 		switch (m_type)
 		{
 		case 1:
@@ -135,23 +149,23 @@ void Asteroids::render(sf::RenderWindow & window)
 			window.draw(m_tinySprite);
 			break;
 		}
-	//}
+	}
 }
 
 void Asteroids::update()
 {
-	movement();
-	screenWrap();
+	if (m_isActive)
+	{
+		movement();
+		screenWrap();
+	}
 }
 
 void Asteroids::movement()
 {
 	m_position += m_speed;
 }
-///TODO: Dion, maybe where type is set have a local variable that takes the place
-///of the sprite and pos variable for that type, then pass those into all these functions
-///to avoid repeated very similar code blocks repeated within the switch.
-///The mess / ineficiency is most evident in this next function. But works for now
+
 void Asteroids::screenWrap()
 {
 	if (m_position.X() < -OFF_SCR_OFFSET * 2)

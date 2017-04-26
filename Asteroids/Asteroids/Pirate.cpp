@@ -85,17 +85,15 @@ void Pirate::move()
 	double y = -std::cos(m_rotation * PI / 180.0);
 
 	m_accelerationVector = sf::Vector2f(x, y);
-
-	m_velocity.y += m_accelerationVector.y * m_acceleration;
-	m_velocity.x += m_accelerationVector.x * m_acceleration;
+	m_velocity += m_accelerationVector * m_acceleration;
 
 
 }
 
 void Pirate::friction()
 {
-	m_velocity.x *= 0.99;
-	m_velocity.y *= 0.99;
+	m_velocity = m_velocity * 0.99;
+
 	m_sprite.move(m_velocity);
 }
 

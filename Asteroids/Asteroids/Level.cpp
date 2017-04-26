@@ -95,11 +95,11 @@ void Level::actionManager()
 
 void Level::enemyShoot()
 {
-	/*if (!enemyBullet.getActive())
+	if (!enemyBullet.getActive())
 	{
-		enemyBullet.setPosition(pirate.getBody().getPosition().x, pirate.getBody().getPosition().y);
+		enemyBullet.setPosition(pirate.getPos());
 		enemyBullet.setVelocity(pirate.getRotation());
-	}*/
+	}
 }
 
 void Level::playerShoot()
@@ -362,6 +362,7 @@ void Level::bulletCollsions()
 		{
 			std::cout << "bullet hit Large" << std::endl;
 			largeAsteroids[i].setActive(false);
+			largeAsteroids[i].setOffScr();
 			addMed();
 		}
 	}

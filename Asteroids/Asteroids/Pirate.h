@@ -12,8 +12,8 @@ class Pirate
 	sf::IntRect m_textureRect;
 	double m_rotation;
 	double m_turnRate;
-	sf::Vector2f m_velocity;
-	sf::Vector2f m_accelerationVector;
+	MyVector3D m_velocity;
+	MyVector3D m_accelerationVector;
 	double m_acceleration;
 	bool m_isMoving;
 	bool m_isRotating;
@@ -22,6 +22,7 @@ public:
 
 	Pirate();
 	~Pirate();
+	MyVector3D getPos();
 	void loadContent();
 	void init();
 	void setMoving(bool);
