@@ -205,11 +205,6 @@ void Level::setAsteroidType()
 	
 }
 
-void Level::initAsteroids()
-{
-	setAsteroidType();
-}
-
 void Level::updateAsteroids()
 {
 	for (int i = 0; i < MAX_ASTEROIDS; i++)
