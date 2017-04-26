@@ -121,11 +121,6 @@ void Asteroids::setupType(int type)
 }
 
 
-void Asteroids::init()
-{
-	spawnAsteroids();
-}
-
 void Asteroids::render(sf::RenderWindow & window)
 {
 	//if (m_isActive)
@@ -189,4 +184,9 @@ void Asteroids::screenWrap()
 MyVector3D Asteroids::getPos()
 {
 	return m_position;
+}
+
+void Asteroids::setPos(MyVector3D newPos)
+{
+	m_position = newPos;
 }

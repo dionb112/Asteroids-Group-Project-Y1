@@ -48,11 +48,10 @@ public:
 	void drawAsteroids(sf::RenderWindow &window);
 
 	void setAsteroidType();
-	void initAsteroids();
 	void updateAsteroids();
-	void addMed();
-	void addSmall();
-	void addTiny();
+	void addMed(int deadLarge);
+	void addSmall(int deadMed);
+	void addTiny(int deadSmall);
 	void spawnGem(int deadTiny);
 
 	void collisions();

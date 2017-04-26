@@ -3,7 +3,7 @@
 void Level::init()
 {
 	player.init();
-	initAsteroids();
+	setAsteroidType();
 	pirate.init();
 	m_counter = 0;
 	m_prevBehaviour = 0;
@@ -203,17 +203,6 @@ void Level::setAsteroidType()
 	}
 }
 
-void Level::initAsteroids()
-{
-	setAsteroidType();
-	for (int i = 0; i < MAX_ASTEROIDS; i++)
-	{
-		largeAsteroids[i].init();
-		medAsteroids[i].init();
-		smallAsteroids[i].init();
-		tinyAsteroids[i].init();
-	}
-}
 
 void Level::updateAsteroids()
 {
@@ -354,8 +343,8 @@ void Level::bulletCollsions()
 		{
 			std::cout << "bullet hit Large" << std::endl;
 			largeAsteroids[i].setActive(false);
+			addMed(i);
 			largeAsteroids[i].setOffScr();
-			addMed();
 		}
 	}
 	for (int i = 0; i < 6; i++)
@@ -364,8 +353,8 @@ void Level::bulletCollsions()
 		{
 			std::cout << "bullet hit med" << std::endl;
 			medAsteroids[i].setActive(false);
+			addSmall(i);
 			medAsteroids[i].setOffScr();
-			addSmall();
 		}
 	}
 	for (int i = 0; i < 16; i++)
@@ -374,8 +363,8 @@ void Level::bulletCollsions()
 		{
 			std::cout << "bullet hit small" << std::endl;
 			smallAsteroids[i].setActive(false);
+			addTiny(i);
 			smallAsteroids[i].setOffScr();
-			addTiny();
 		}
 	}
 	for (int i = 0; i < 36; i++)
@@ -384,8 +373,8 @@ void Level::bulletCollsions()
 		{
 			std::cout << "bullet hit tiny" << std::endl;
 			tinyAsteroids[i].setActive(false);
-			tinyAsteroids[i].setOffScr();
 			spawnGem(i);
+			tinyAsteroids[i].setOffScr();
 		}
 	}
 }
@@ -410,36 +399,45 @@ bool Level::isColliding(MyVector3D pos1, int rad1, MyVector3D pos2, int rad2)
 	}
 }
 
-void Level::addMed()
+void Level::addMed(int deadLarge)
 {
 	for (int i = 0; i < MAX_ASTEROIDS + 4; i++)
 	{
 		if (medAsteroids[i].getActive() == false)
 		{
+			medAsteroids[i].setupType(2);
+			medAsteroids[i].loadContent();
+			medAsteroids[i].setPos(largeAsteroids[deadLarge].getPos());
 			medAsteroids[i].setActive(true);
 			std::cout << "2 med added" << std::endl;
 		}
 	}
 }
 
-void Level::addSmall()
+void Level::addSmall(int deadMed)
 {
 	for (int i = 0; i < MAX_ASTEROIDS + 14; i++)
 	{
 		if (smallAsteroids[i].getActive() == false)
 		{
+			smallAsteroids[i].setupType(3);
+			smallAsteroids[i].loadContent();
+			smallAsteroids[i].setPos(medAsteroids[deadMed].getPos());
 			smallAsteroids[i].setActive(true);
 			std::cout << "2 small added" << std::endl;
 		}
 	}
 }
 
-void Level::addTiny()
+void Level::addTiny(int deadSmall)
 {
 	for (int i = 0; i < MAX_ASTEROIDS + 34; i++)
 	{
 		if (tinyAsteroids[i].getActive() == false)
 		{
+			tinyAsteroids[i].setupType(4);
+			tinyAsteroids[i].loadContent();
+			tinyAsteroids[i].setPos(smallAsteroids[deadSmall].getPos());
 			tinyAsteroids[i].setActive(true);
 			std::cout << "2 tiny added" << std::endl;
 		}
