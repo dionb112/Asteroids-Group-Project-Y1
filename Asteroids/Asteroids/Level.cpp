@@ -372,6 +372,7 @@ void Level::bulletCollsions()
 		{
 			std::cout << "bullet hit med" << std::endl;
 			medAsteroids[i].setActive(false);
+			medAsteroids[i].setOffScr();
 			addSmall();
 		}
 	}
@@ -381,6 +382,7 @@ void Level::bulletCollsions()
 		{
 			std::cout << "bullet hit small" << std::endl;
 			smallAsteroids[i].setActive(false);
+			smallAsteroids[i].setOffScr();
 			addTiny();
 		}
 	}
@@ -390,6 +392,7 @@ void Level::bulletCollsions()
 		{
 			std::cout << "bullet hit tiny" << std::endl;
 			tinyAsteroids[i].setActive(false);
+			tinyAsteroids[i].setOffScr();
 			spawnGem(i);
 		}
 	}
