@@ -433,9 +433,10 @@ bool Level::isColliding(MyVector3D pos1, int rad1, MyVector3D pos2, int rad2)
 
 void Level::addMed(int deadLarge)
 {
+	int counter = 0;
 	for (int i = 0; i < MAX_ASTEROIDS + 4; i++)
 	{
-		if (medAsteroids[i].getActive() == false)
+		if (medAsteroids[i].getActive() == false && counter < 2)
 		{
 			medAsteroids[i].setupType(2);
 			medAsteroids[i].loadContent();
@@ -448,9 +449,10 @@ void Level::addMed(int deadLarge)
 
 void Level::addSmall(int deadMed)
 {
+	int counter = 0;
 	for (int i = 0; i < MAX_ASTEROIDS + 14; i++)
 	{
-		if (smallAsteroids[i].getActive() == false)
+		if (smallAsteroids[i].getActive() == false && counter < 2)
 		{
 			smallAsteroids[i].setupType(3);
 			smallAsteroids[i].loadContent();
@@ -463,15 +465,17 @@ void Level::addSmall(int deadMed)
 
 void Level::addTiny(int deadSmall)
 {
+	int counter = 0;
 	for (int i = 0; i < MAX_ASTEROIDS + 34; i++)
 	{
-		if (tinyAsteroids[i].getActive() == false)
+		if (tinyAsteroids[i].getActive() == false && counter < 2)
 		{
 			tinyAsteroids[i].setupType(4);
 			tinyAsteroids[i].loadContent();
 			tinyAsteroids[i].setPos(smallAsteroids[deadSmall].getPos());
 			tinyAsteroids[i].setActive(true);
 			std::cout << "2 tiny added" << std::endl;
+			counter++;
 		}
 	}
 }
