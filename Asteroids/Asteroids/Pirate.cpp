@@ -8,6 +8,11 @@ Pirate::~Pirate()
 {
 }
 
+MyVector3D Pirate::getPos()
+{
+	return MyVector3D();
+}
+
 void Pirate::loadContent()
 {
 	if (!m_texture.loadFromFile("ASSETS\\IMAGES\\enemyship64.png"))
@@ -93,7 +98,6 @@ void Pirate::move()
 void Pirate::friction()
 {
 	m_velocity = m_velocity * 0.99;
-
 	m_sprite.move(m_velocity);
 }
 

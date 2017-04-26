@@ -61,7 +61,7 @@ public:
 	void addMed();
 	void addSmall();
 	void addTiny();
-	void spawnGem();
+	void spawnGem(int deadTiny);
 
 	void collisions();
 	void playerCollisions();

@@ -95,11 +95,11 @@ void Level::actionManager()
 
 void Level::enemyShoot()
 {
-	if (!enemyBullet.getActive())
-	{
-		enemyBullet.setPosition(pirate.getPos());
-		enemyBullet.setVelocity(pirate.getRotation());
-	}
+	//if (!enemyBullet.getActive())
+	//{
+	//	enemyBullet.setPosition(pirate.getPos());
+	//	enemyBullet.setVelocity(pirate.getRotation());
+	//}
 }
 
 void Level::playerShoot()
@@ -269,7 +269,7 @@ void Level::drawAsteroids(sf::RenderWindow & window)
 /// on Earth level, orange, red and purple have 10% spawn chance
 /// green has 30% and blue has 0%
 /// </summary>
-void Level::spawnGem()
+void Level::spawnGem(int deadTiny)
 {
 	int index = -1;
 	int random = rand() % 10 + 1;
@@ -292,7 +292,7 @@ void Level::spawnGem()
 		{
 			index = 3;
 		}
-		gems.spawn(index, tinyAsteroids[m_noOfTiny].getPos());//spawn that gem
+		gems.spawn(index, tinyAsteroids[deadTiny].getPos());//spawn that gem
 	}
 
 }
@@ -390,7 +390,7 @@ void Level::bulletCollsions()
 		{
 			std::cout << "bullet hit tiny" << std::endl;
 			tinyAsteroids[i].setActive(false);
-			spawnGem();
+			spawnGem(i);
 		}
 	}
 }

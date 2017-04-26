@@ -89,9 +89,9 @@ void Gems::rotate()
 	}
 }
 
-sf::Vector2f Gems::getPos(int index)
+MyVector3D Gems::getPos(int index)
 {
-	sf::Vector2f temp = m_bodies[index].getPosition();
+	MyVector3D temp = m_bodies[index].getPosition();
 	return temp;
 }
 
