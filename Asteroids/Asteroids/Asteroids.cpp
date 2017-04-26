@@ -20,7 +20,7 @@ bool Asteroids::getActive()
 
 void Asteroids::setActive(bool newActive)
 {
-	m_isActive = false;
+	m_isActive = newActive;
 }
 
 
