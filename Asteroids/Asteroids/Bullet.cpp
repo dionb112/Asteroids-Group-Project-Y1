@@ -48,6 +48,11 @@ bool Bullet::getActive()
 	return m_active;
 }
 
+void Bullet::setActive(bool active)
+{
+	m_active = active;
+}
+
 void Bullet::update()
 {
 	if (m_active)

@@ -20,6 +20,7 @@ private:
 	Asteroids tinyAsteroids[MAX_ASTEROIDS + 34];
 	Gems gems;
 	Pirate pirate;
+	LevelData levelData[5];
 	int m_noOfLarge;
 	int m_noOfMed;
 	int m_noOfSmall;
@@ -43,7 +44,8 @@ public:
 	void shieldUp();
 	void fuelUp();
 
-	void levelSetup();
+	void levelSetup(int currLevel);
+	void asteroidsSetup(int currLevel);
 
 	void render(sf::RenderWindow &window);
 	void drawAsteroids(sf::RenderWindow &window);

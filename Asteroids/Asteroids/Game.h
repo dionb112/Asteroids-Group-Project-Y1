@@ -54,6 +54,8 @@ private:
 	MenuScreen currScreen;
 	int m_licenseTime;
 
+	int m_menuDelay;
+
 	License license;
 	Splash splash;
 	MainMenu mainMenu;

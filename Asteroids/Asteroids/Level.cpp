@@ -7,6 +7,31 @@ void Level::init()
 	pirate.init();
 	m_counter = 0;
 	m_prevBehaviour = 0;
+
+	levelData[0].largeAst	= 0;
+	levelData[0].medAst		= 0;
+	levelData[0].smallAst	= 1;
+	levelData[0].tinyAst	= 1;
+
+	levelData[1].largeAst	= 0;
+	levelData[1].medAst		= 2;
+	levelData[1].smallAst	= 1;
+	levelData[1].tinyAst	= 1;
+
+	levelData[2].largeAst	= 1;
+	levelData[2].medAst		= 1;
+	levelData[2].smallAst	= 2;
+	levelData[2].tinyAst	= 0;
+
+	levelData[3].largeAst	= 1;
+	levelData[3].medAst		= 2;
+	levelData[3].smallAst	= 2;
+	levelData[3].tinyAst	= 1;
+
+	levelData[4].largeAst	= 2;
+	levelData[4].medAst		= 2;
+	levelData[4].smallAst	= 2;
+	levelData[4].tinyAst	= 2;
 }
 
 void Level::update()
@@ -116,9 +141,53 @@ void Level::fuelUp()
 	player.fuelUp();
 }
 
-void Level::levelSetup()
+void Level::levelSetup(int currLevel)
 {
 	player.reset();
+	pirate.reset();
+	gems.reset(); // this one does nothing atm
+	asteroidsSetup(currLevel);
+	playerBullet.setActive(false);
+	enemyBullet.setActive(false);
+}
+
+void Level::asteroidsSetup(int currLevel)
+{
+	//These first 4 for loops reset all of the asteroid arrays to false so that we can set up the level with the last 4 for loops
+	for (int i = 0; i < 2; i++)
+	{
+		largeAsteroids[i].setActive(false);
+	}
+	for (int i = 0; i < 6; i++)
+	{
+		medAsteroids[i].setActive(false);
+	}
+	for (int i = 0; i < 16; i++)
+	{
+		smallAsteroids[i].setActive(false);
+	}
+	for (int i = 0; i < 36; i++)
+	{
+		tinyAsteroids[i].setActive(false);
+	}
+
+	//These 4 for loops set up the level with the amount of asteroids it needs
+	for (int i = 0; i < levelData[currLevel].largeAst; i++)
+	{
+		largeAsteroids[i].setActive(true);
+	}
+	for (int i = 0; i < levelData[currLevel].medAst; i++)
+	{
+		medAsteroids[i].setActive(true);
+	}
+	for (int i = 0; i < levelData[currLevel].smallAst; i++)
+	{
+		smallAsteroids[i].setActive(true);
+	}
+	for (int i = 0; i < levelData[currLevel].tinyAst; i++)
+	{
+		tinyAsteroids[i].setActive(true);
+	}
 }
 
 
@@ -194,47 +263,46 @@ void Level::drawAsteroids(sf::RenderWindow & window)
 	}
 }
 
-/// <summary>
-/// These functions are all seperated to allow for more effecient calling. Rather than calling one big arraysManager function and passing around a bunch of variables every time any collision of any type happens
-/// There is no function for add large since there is no bigger asteroid to destroy giving two large
-/// </summary>
-void Level::deleteLarge()
-{
-	if (m_noOfLarge > 0)
-	{
-		m_noOfLarge--;
-		std::cout << "1 large removed" << std::endl;
-	}
-}
-
-void Level::deleteMed()
-{
-	if (m_noOfMed > 0)
-	{
-		m_noOfMed--;
-		std::cout << "1 med removed" << std::endl;
-	}
-}
-
-void Level::deleteSmall()
-{
-	if (m_noOfSmall > 0)
-	{
-		m_noOfSmall--;
-		std::cout << "1 small removed" << std::endl;
-	}
-}
-
-void Level::deleteTiny()
-{
-	if (m_noOfTiny > 0)
-	{
-		spawnGem();
-		m_noOfTiny--;
-		std::cout << "1 tiny removed" << std::endl;
-
-	}
-}
+///// <summary>
+///// These functions are all seperated to allow for more effecient calling. Rather than calling one big arraysManager function and passing around a bunch of variables every time any collision of any type happens
+///// There is no function for add large since there is no bigger asteroid to destroy giving two large
+///// </summary>
+//void Level::deleteLarge()
+//{
+//	if (m_noOfLarge > 0)
+//	{
+//		m_noOfLarge--;
+//		std::cout << "1 large removed" << std::endl;
+//	}
+//}
+//
+//void Level::deleteMed()
+//{
+//	if (m_noOfMed > 0)
+//	{
+//		m_noOfMed--;
+//		std::cout << "1 med removed" << std::endl;
+//	}
+//}
+//
+//void Level::deleteSmall()
+//{
+//	if (m_noOfSmall > 0)
+//	{
+//		m_noOfSmall--;
+//		std::cout << "1 small removed" << std::endl;
+//	}
+//}
+//
+//void Level::deleteTiny()
+//{
+//	if (m_noOfTiny > 0)
+//	{
+//		m_noOfTiny--;
+//		std::cout << "1 tiny removed" << std::endl;
+//
+//	}
+//}
 
 /// <summary>
 /// spawning gems for first level, called upon tiny deletion
@@ -288,6 +356,7 @@ void Level::playerCollisions()
 		if (isColliding(player.getPos(), player.getRadius(), largeAsteroids[i].getPos(), largeAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
+
 		}
 	}
 	for (int i = 0; i < 6; i++)
@@ -295,6 +364,7 @@ void Level::playerCollisions()
 		if (isColliding(player.getPos(), player.getRadius(), medAsteroids[i].getPos(), medAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
+
 		}
 	}
 	for (int i = 0; i < 16; i++)
@@ -302,6 +372,7 @@ void Level::playerCollisions()
 		if (isColliding(player.getPos(), player.getRadius(), smallAsteroids[i].getPos(), smallAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
+
 		}
 	}
 	for (int i = 0; i < 36; i++)
@@ -309,8 +380,10 @@ void Level::playerCollisions()
 		if (isColliding(player.getPos(), player.getRadius(), tinyAsteroids[i].getPos(), tinyAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
+
 		}
-	}
+	}		
+
 
 	/*for (int i = 0; i < 5; i++)
 	{
@@ -328,6 +401,8 @@ void Level::bulletCollsions()
 		if (isColliding(playerBullet.getPos(), player.getRadius(), largeAsteroids[i].getPos(), largeAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
+			largeAsteroids[i].setActive(false);
+			addMed();
 		}
 	}
 	for (int i = 0; i < 6; i++)
@@ -335,6 +410,8 @@ void Level::bulletCollsions()
 		if (isColliding(playerBullet.getPos(), player.getRadius(), medAsteroids[i].getPos(), medAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
+			medAsteroids[i].setActive(false);
+			addSmall();
 		}
 	}
 	for (int i = 0; i < 16; i++)
@@ -342,6 +419,8 @@ void Level::bulletCollsions()
 		if (isColliding(playerBullet.getPos(), player.getRadius(), smallAsteroids[i].getPos(), smallAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
+			smallAsteroids[i].setActive(false);
+			addTiny();
 		}
 	}
 	for (int i = 0; i < 36; i++)
@@ -349,6 +428,8 @@ void Level::bulletCollsions()
 		if (isColliding(playerBullet.getPos(), player.getRadius(), tinyAsteroids[i].getPos(), tinyAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
+			tinyAsteroids[i].setActive(false);
+			spawnGem();
 		}
 	}
 }

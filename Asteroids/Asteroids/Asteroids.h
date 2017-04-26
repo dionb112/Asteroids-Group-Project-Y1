@@ -23,11 +23,14 @@ class Asteroids
 	
 	int m_type;
 
-	bool m_active;
+	bool m_isActive;
 	int m_radius;
+
 public:
 	Asteroids();
 	~Asteroids();
+	bool getActive();
+	void setActive(bool newActive);
 	void loadContent();
 	void init();
 	void render(sf::RenderWindow & window);

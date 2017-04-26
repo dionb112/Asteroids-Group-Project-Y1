@@ -22,4 +22,6 @@ public:
 	void rotate();
 	sf::Vector2f getPos(int index);
 	int getRadius();
+	void reset();
+
 };
