@@ -32,7 +32,6 @@ public:
 	bool getActive();
 	void setActive(bool newActive);
 	void loadContent();
-	void init();
 	void render(sf::RenderWindow & window);
 	void update();
 	void spawnAsteroids();
@@ -40,6 +39,7 @@ public:
 	void movement();
 	void screenWrap();
 	MyVector3D getPos();
+	void setPos(MyVector3D newPos);
 	int getRadius();
 	void setOffScr();
 };
