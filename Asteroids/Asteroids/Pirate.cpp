@@ -26,8 +26,7 @@ void Pirate::init()
 
 	m_sprite.setOrigin(32, 32);
 
-	//m_sprite.setPosition(rand() % (SCR_W + OFF_SCR_OFFSET) - OFF_SCR_OFFSET, rand() % (SCR_H + OFF_SCR_OFFSET) - OFF_SCR_OFFSET);
-	m_sprite.setPosition(100,100);
+	m_sprite.setPosition(rand() % (SCR_W + OFF_SCR_OFFSET) - OFF_SCR_OFFSET, rand() % (SCR_H + OFF_SCR_OFFSET) - OFF_SCR_OFFSET);
 
 	m_velocity = sf::Vector2f(0, 0);
 	m_turnRate = 4;
@@ -135,4 +134,10 @@ void Pirate::rotate()
 		m_rotation += m_turnRate;
 		m_sprite.setRotation(m_rotation);
 	}
+}
+
+void Pirate::reset()
+{
+	m_sprite.setPosition(rand() % (SCR_W + OFF_SCR_OFFSET) - OFF_SCR_OFFSET, rand() % (SCR_H + OFF_SCR_OFFSET) - OFF_SCR_OFFSET);
+	m_acceleration = 0.15;
 }

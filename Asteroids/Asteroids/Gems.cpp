@@ -99,3 +99,8 @@ int Gems::getRadius()
 {
 	return m_radius;
 }
+
+void Gems::reset()
+{
+	//
+}

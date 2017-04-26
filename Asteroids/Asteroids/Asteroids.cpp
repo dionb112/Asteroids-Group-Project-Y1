@@ -13,6 +13,16 @@ Asteroids::~Asteroids()
 {
 }
 
+bool Asteroids::getActive()
+{
+	return m_isActive;
+}
+
+void Asteroids::setActive(bool newActive)
+{
+	m_isActive = false;
+}
+
 
 
 int Asteroids::getRadius()
@@ -71,6 +81,7 @@ void Asteroids::spawnAsteroids()
 	double x = rand() % (SCR_W + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
 	double y = rand() % (SCR_H + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
 	m_position = MyVector3D(x, y, 0);
+	m_isActive = true;
 }
 
 void Asteroids::setupType(int type)
@@ -104,24 +115,27 @@ void Asteroids::init()
 
 void Asteroids::render(sf::RenderWindow & window)
 {
-	switch (m_type)
+	if (m_isActive)
 	{
-	case 1:
-		m_largeSprite.setPosition(m_position);
-		window.draw(m_largeSprite);
-		break;
-	case 2:
-		m_medSprite.setPosition(m_position);
-		window.draw(m_medSprite);
-		break;
-	case 3:
-		m_smallSprite.setPosition(m_position);
-		window.draw(m_smallSprite);
-		break;
-	case 4:
-		m_tinySprite.setPosition(m_position);
-		window.draw(m_tinySprite);
-		break;
+		switch (m_type)
+		{
+		case 1:
+			m_largeSprite.setPosition(m_position);
+			window.draw(m_largeSprite);
+			break;
+		case 2:
+			m_medSprite.setPosition(m_position);
+			window.draw(m_medSprite);
+			break;
+		case 3:
+			m_smallSprite.setPosition(m_position);
+			window.draw(m_smallSprite);
+			break;
+		case 4:
+			m_tinySprite.setPosition(m_position);
+			window.draw(m_tinySprite);
+			break;
+		}
 	}
 }
 

@@ -144,8 +144,8 @@ void Level::fuelUp()
 void Level::levelSetup(int currLevel)
 {
 	player.reset();
-	//reset pirate
-	//resetGems
+	pirate.reset();
+	gems.reset(); // this one does nothing atm
 	asteroidsSetup(currLevel);
 	playerBullet.setActive(false);
 	enemyBullet.setActive(false);
@@ -156,37 +156,37 @@ void Level::asteroidsSetup(int currLevel)
 	//These first 4 for loops reset all of the asteroid arrays to false so that we can set up the level with the last 4 for loops
 	for (int i = 0; i < 2; i++)
 	{
-		//set all large asteroids to inactive
+		largeAsteroids[i].setActive(false);
 	}
 	for (int i = 0; i < 6; i++)
 	{
-		//set all med asteroids to inactive
+		medAsteroids[i].setActive(false);
 	}
 	for (int i = 0; i < 16; i++)
 	{
-		//set all small asteroids to inactive
+		smallAsteroids[i].setActive(false);
 	}
 	for (int i = 0; i < 36; i++)
 	{
-		//set all tiny asteroids to inactive
+		tinyAsteroids[i].setActive(false);
 	}
 
 	//These 4 for loops set up the level with the amount of asteroids it needs
 	for (int i = 0; i < levelData[currLevel].largeAst; i++)
 	{
-		//set large asteroids to active
+		largeAsteroids[i].setActive(true);
 	}
 	for (int i = 0; i < levelData[currLevel].medAst; i++)
 	{
-		//set med asteroids to active
+		medAsteroids[i].setActive(true);
 	}
 	for (int i = 0; i < levelData[currLevel].smallAst; i++)
 	{
-		//set small asteroids to active
+		smallAsteroids[i].setActive(true);
 	}
 	for (int i = 0; i < levelData[currLevel].tinyAst; i++)
 	{
-		//set tiny asteroids to active
+		tinyAsteroids[i].setActive(true);
 	}
 }
 
@@ -357,6 +357,7 @@ void Level::playerCollisions()
 		if (isColliding(player.getPos(), player.getRadius(), largeAsteroids[i].getPos(), largeAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
+			largeAsteroids[i].setActive(false);
 		}
 	}
 	for (int i = 0; i < 6; i++)
@@ -364,6 +365,7 @@ void Level::playerCollisions()
 		if (isColliding(player.getPos(), player.getRadius(), medAsteroids[i].getPos(), medAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
+			medAsteroids[i].setActive(false);
 		}
 	}
 	for (int i = 0; i < 16; i++)
@@ -371,6 +373,7 @@ void Level::playerCollisions()
 		if (isColliding(player.getPos(), player.getRadius(), smallAsteroids[i].getPos(), smallAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
+			smallAsteroids[i].setActive(false);
 		}
 	}
 	for (int i = 0; i < 36; i++)
@@ -378,8 +381,10 @@ void Level::playerCollisions()
 		if (isColliding(player.getPos(), player.getRadius(), tinyAsteroids[i].getPos(), tinyAsteroids[i].getRadius()))
 		{
 			std::cout << "hit" << std::endl;
+			tinyAsteroids[i].setActive(false);
 		}
-	}
+	}		
+
 
 	/*for (int i = 0; i < 5; i++)
 	{
