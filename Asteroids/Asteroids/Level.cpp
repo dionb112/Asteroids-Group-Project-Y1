@@ -9,10 +9,10 @@ void Level::init()
 	m_prevBehaviour = 0;
 
 	//for testing stuff easier
-	levelData[0].largeAst	= 2;
-	levelData[0].medAst		= 2;
-	levelData[0].smallAst	= 2;
-	levelData[0].tinyAst	= 2;
+	levelData[0].largeAst	= 0;
+	levelData[0].medAst		= 0;
+	levelData[0].smallAst	= 1;
+	levelData[0].tinyAst	= 1;
 
 	levelData[1].largeAst	= 0;
 	levelData[1].medAst		= 2;
