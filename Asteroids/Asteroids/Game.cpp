@@ -149,6 +149,30 @@ void Game::processLevelSelectEvents()
 		currScreen = MenuScreen::Level;
 		m_menuDelay = DELAY;
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	{
+		level.levelSetup(1);
+		currScreen = MenuScreen::Level;
+		m_menuDelay = DELAY;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+	{
+		level.levelSetup(2);
+		currScreen = MenuScreen::Level;
+		m_menuDelay = DELAY;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
+	{
+		level.levelSetup(3);
+		currScreen = MenuScreen::Level;
+		m_menuDelay = DELAY;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
+	{
+		level.levelSetup(4);
+		currScreen = MenuScreen::Level;
+		m_menuDelay = DELAY;
+	}
 }
 
 void Game::processHelpEvents()
