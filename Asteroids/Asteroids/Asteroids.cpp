@@ -54,7 +54,7 @@ void Asteroids::loadContent()
 			std::cout << "Error loading medium asteroid texture" << std::endl;
 		}
 		m_medSprite.setTexture(m_medTexture);
-		m_largeSprite.setOrigin(48, 48);
+		m_medSprite.setOrigin(48, 48);
 		break;
 	case 3:
 		if (!m_smallTexture.loadFromFile("ASSETS/IMAGES/asteroid1.png"))
@@ -62,7 +62,7 @@ void Asteroids::loadContent()
 			std::cout << "Error loading small asteroid texture" << std::endl;
 		}
 		m_smallSprite.setTexture(m_smallTexture);
-		m_largeSprite.setOrigin(32, 32);
+		m_smallSprite.setOrigin(32, 32);
 		break;
 	case 4:
 		if (!m_tinyTexture.loadFromFile("ASSETS/IMAGES/asteroid0.png"))
@@ -70,7 +70,7 @@ void Asteroids::loadContent()
 			std::cout << "Error loading tiny asteroid texture" << std::endl;
 		}
 		m_tinySprite.setTexture(m_tinyTexture);
-		m_largeSprite.setOrigin(16, 16);
+		m_tinySprite.setOrigin(16, 16);
 		break;
 	}
 }
@@ -114,8 +114,8 @@ void Asteroids::init()
 
 void Asteroids::render(sf::RenderWindow & window)
 {
-	if (m_isActive)
-	{
+	//if (m_isActive)
+	//{
 		switch (m_type)
 		{
 		case 1:
@@ -135,7 +135,7 @@ void Asteroids::render(sf::RenderWindow & window)
 			window.draw(m_tinySprite);
 			break;
 		}
-	}
+	//}
 }
 
 void Asteroids::update()
@@ -164,11 +164,11 @@ void Asteroids::screenWrap()
 	}
 	if (m_position.Y() < 0)
 	{
-		m_position = MyVector3D(m_position.Y(), SCR_H, 0);
+		m_position = MyVector3D(m_position.X(), SCR_H, 0);
 	}
 	if (m_position.Y() > SCR_H)
 	{
-		m_position = MyVector3D(m_position.Y(), 0, 0);
+		m_position = MyVector3D(m_position.X(), 0, 0);
 	}
 }
 
