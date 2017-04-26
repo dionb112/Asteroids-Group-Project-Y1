@@ -48,7 +48,6 @@ public:
 	void drawAsteroids(sf::RenderWindow &window);
 
 	void setAsteroidType();
-	void initAsteroids();
 	void updateAsteroids();
 	void addMed(int deadLarge);
 	void addSmall(int deadMed);
