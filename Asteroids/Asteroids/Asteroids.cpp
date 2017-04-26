@@ -164,7 +164,7 @@ void Asteroids::screenWrap()
 	{
 		m_position = MyVector3D(SCR_W + OFF_SCR_OFFSET, m_position.Y(), 0);
 	}
-	if (m_position.X() > SCR_W + (OFF_SCR_OFFSET / 2))
+	if (m_position.X() > SCR_W + (OFF_SCR_OFFSET))
 	{
 		m_position = MyVector3D(-OFF_SCR_OFFSET, m_position.Y(), 0);
 	}
@@ -172,7 +172,7 @@ void Asteroids::screenWrap()
 	{
 		m_position = MyVector3D(m_position.X(), SCR_H + OFF_SCR_OFFSET, 0);
 	}
-	if (m_position.Y() > SCR_H + (OFF_SCR_OFFSET / 2))
+	if (m_position.Y() > SCR_H + (OFF_SCR_OFFSET))
 	{
 		m_position = MyVector3D(m_position.X(), -OFF_SCR_OFFSET, 0);
 	}
