@@ -225,19 +225,19 @@ void Level::initAsteroids()
 
 void Level::updateAsteroids()
 {
-	for (int i = 0; i < m_noOfLarge; i++)
+	for (int i = 0; i < MAX_ASTEROIDS; i++)
 	{
 		largeAsteroids[i].update();
 	}
-	for (int i = 0; i < m_noOfMed; i++)
+	for (int i = 0; i < MAX_ASTEROIDS + 4; i++)
 	{
 		medAsteroids[i].update();
 	}
-	for (int i = 0; i < m_noOfSmall; i++)
+	for (int i = 0; i < MAX_ASTEROIDS + 14; i++)
 	{
 		smallAsteroids[i].update();
 	}
-	for (int i = 0; i < m_noOfTiny; i++)
+	for (int i = 0; i < MAX_ASTEROIDS + 34; i++)
 	{
 		tinyAsteroids[i].update();
 	}
@@ -263,46 +263,6 @@ void Level::drawAsteroids(sf::RenderWindow & window)
 	}
 }
 
-///// <summary>
-///// These functions are all seperated to allow for more effecient calling. Rather than calling one big arraysManager function and passing around a bunch of variables every time any collision of any type happens
-///// There is no function for add large since there is no bigger asteroid to destroy giving two large
-///// </summary>
-//void Level::deleteLarge()
-//{
-//	if (m_noOfLarge > 0)
-//	{
-//		m_noOfLarge--;
-//		std::cout << "1 large removed" << std::endl;
-//	}
-//}
-//
-//void Level::deleteMed()
-//{
-//	if (m_noOfMed > 0)
-//	{
-//		m_noOfMed--;
-//		std::cout << "1 med removed" << std::endl;
-//	}
-//}
-//
-//void Level::deleteSmall()
-//{
-//	if (m_noOfSmall > 0)
-//	{
-//		m_noOfSmall--;
-//		std::cout << "1 small removed" << std::endl;
-//	}
-//}
-//
-//void Level::deleteTiny()
-//{
-//	if (m_noOfTiny > 0)
-//	{
-//		m_noOfTiny--;
-//		std::cout << "1 tiny removed" << std::endl;
-//
-//	}
-//}
 
 /// <summary>
 /// spawning gems for first level, called upon tiny deletion
@@ -355,7 +315,7 @@ void Level::playerCollisions()
 	{
 		if (isColliding(player.getPos(), player.getRadius(), largeAsteroids[i].getPos(), largeAsteroids[i].getRadius()))
 		{
-			std::cout << "hit" << std::endl;
+			std::cout << "player hit large asteroid" << std::endl;
 
 		}
 	}
@@ -363,7 +323,7 @@ void Level::playerCollisions()
 	{
 		if (isColliding(player.getPos(), player.getRadius(), medAsteroids[i].getPos(), medAsteroids[i].getRadius()))
 		{
-			std::cout << "hit" << std::endl;
+			std::cout << "player hit med asteroid" << std::endl;
 
 		}
 	}
@@ -371,7 +331,7 @@ void Level::playerCollisions()
 	{
 		if (isColliding(player.getPos(), player.getRadius(), smallAsteroids[i].getPos(), smallAsteroids[i].getRadius()))
 		{
-			std::cout << "hit" << std::endl;
+			std::cout << "player hit small asteroid" << std::endl;
 
 		}
 	}
@@ -379,7 +339,7 @@ void Level::playerCollisions()
 	{
 		if (isColliding(player.getPos(), player.getRadius(), tinyAsteroids[i].getPos(), tinyAsteroids[i].getRadius()))
 		{
-			std::cout << "hit" << std::endl;
+			std::cout << "player hit tiny asteroid" << std::endl;
 
 		}
 	}		
@@ -400,7 +360,7 @@ void Level::bulletCollsions()
 	{
 		if (isColliding(playerBullet.getPos(), player.getRadius(), largeAsteroids[i].getPos(), largeAsteroids[i].getRadius()))
 		{
-			std::cout << "hit" << std::endl;
+			std::cout << "bullet hit Large" << std::endl;
 			largeAsteroids[i].setActive(false);
 			addMed();
 		}
@@ -409,7 +369,7 @@ void Level::bulletCollsions()
 	{
 		if (isColliding(playerBullet.getPos(), player.getRadius(), medAsteroids[i].getPos(), medAsteroids[i].getRadius()))
 		{
-			std::cout << "hit" << std::endl;
+			std::cout << "bullet hit med" << std::endl;
 			medAsteroids[i].setActive(false);
 			addSmall();
 		}
@@ -418,7 +378,7 @@ void Level::bulletCollsions()
 	{
 		if (isColliding(playerBullet.getPos(), player.getRadius(), smallAsteroids[i].getPos(), smallAsteroids[i].getRadius()))
 		{
-			std::cout << "hit" << std::endl;
+			std::cout << "bullet hit small" << std::endl;
 			smallAsteroids[i].setActive(false);
 			addTiny();
 		}
@@ -427,7 +387,7 @@ void Level::bulletCollsions()
 	{
 		if (isColliding(playerBullet.getPos(), player.getRadius(), tinyAsteroids[i].getPos(), tinyAsteroids[i].getRadius()))
 		{
-			std::cout << "hit" << std::endl;
+			std::cout << "bullet hit tiny" << std::endl;
 			tinyAsteroids[i].setActive(false);
 			spawnGem();
 		}
@@ -456,36 +416,36 @@ bool Level::isColliding(MyVector3D pos1, int rad1, MyVector3D pos2, int rad2)
 
 void Level::addMed()
 {
-	if (m_noOfMed < MAX_ASTEROIDS + 4)
+	for (int i = 0; i < MAX_ASTEROIDS + 4; i++)
 	{
-		medAsteroids[m_noOfMed].setupType(2);
-		medAsteroids[m_noOfMed].loadContent();
-		medAsteroids[m_noOfMed].spawnAsteroids();
-		m_noOfMed = m_noOfMed + 2;
-		std::cout << "2 med added" << std::endl;
+		if (medAsteroids[i].getActive() == false)
+		{
+			medAsteroids[i].setActive(true);
+			std::cout << "2 med added" << std::endl;
+		}
 	}
 }
 
 void Level::addSmall()
 {
-	if (m_noOfSmall < MAX_ASTEROIDS + 14)
+	for (int i = 0; i < MAX_ASTEROIDS + 14; i++)
 	{
-		smallAsteroids[m_noOfSmall].setupType(3);
-		smallAsteroids[m_noOfSmall].loadContent();
-		smallAsteroids[m_noOfSmall].spawnAsteroids();
-		m_noOfSmall = m_noOfSmall + 2;
-		std::cout << "2 small added" << std::endl;
+		if (smallAsteroids[i].getActive() == false)
+		{
+			smallAsteroids[i].setActive(true);
+			std::cout << "2 small added" << std::endl;
+		}
 	}
 }
 
 void Level::addTiny()
 {
-	if (m_noOfTiny < MAX_ASTEROIDS + 34)
+	for (int i = 0; i < MAX_ASTEROIDS + 34; i++)
 	{
-		tinyAsteroids[m_noOfTiny].setupType(4);
-		tinyAsteroids[m_noOfTiny].loadContent();
-		tinyAsteroids[m_noOfTiny].spawnAsteroids();
-		m_noOfTiny = m_noOfTiny+2;
-		std::cout << "2 tiny added" << std::endl;
+		if (tinyAsteroids[i].getActive() == false)
+		{
+			tinyAsteroids[i].setActive(true);
+			std::cout << "2 tiny added" << std::endl;
+		}
 	}
 }

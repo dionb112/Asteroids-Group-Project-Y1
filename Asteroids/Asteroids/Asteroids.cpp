@@ -154,21 +154,21 @@ void Asteroids::movement()
 ///The mess / ineficiency is most evident in this next function. But works for now
 void Asteroids::screenWrap()
 {
-	if (m_position.X() < 0)
+	if (m_position.X() < -OFF_SCR_OFFSET * 2)
 	{
-		m_position = MyVector3D(SCR_W, m_position.Y(), 0);
+		m_position = MyVector3D(SCR_W + OFF_SCR_OFFSET * 2, m_position.Y(), 0);
 	}
-	if (m_position.X() > SCR_W)
+	if (m_position.X() > SCR_W + OFF_SCR_OFFSET)
 	{
-		m_position = MyVector3D(0, m_position.Y(), 0);
+		m_position = MyVector3D(-OFF_SCR_OFFSET * 2, m_position.Y(), 0);
 	}
-	if (m_position.Y() < 0)
+	if (m_position.Y() < -OFF_SCR_OFFSET * 2)
 	{
-		m_position = MyVector3D(m_position.X(), SCR_H, 0);
+		m_position = MyVector3D(m_position.X(), SCR_H + OFF_SCR_OFFSET * 2, 0);
 	}
-	if (m_position.Y() > SCR_H)
+	if (m_position.Y() > SCR_H + OFF_SCR_OFFSET)
 	{
-		m_position = MyVector3D(m_position.X(), 0, 0);
+		m_position = MyVector3D(m_position.X(), -OFF_SCR_OFFSET * 2, 0);
 	}
 }
 
