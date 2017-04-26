@@ -191,13 +191,6 @@ void Level::asteroidsSetup(int currLevel)
 }
 
 
-void Level::setNoOfAsteroids()
-{
-	m_noOfLarge = MAX_ASTEROIDS;
-	m_noOfMed = MAX_ASTEROIDS;
-	m_noOfSmall = MAX_ASTEROIDS;
-	m_noOfTiny = MAX_ASTEROIDS;
-}
 
 void Level::setAsteroidType()
 {
@@ -212,7 +205,6 @@ void Level::setAsteroidType()
 
 void Level::initAsteroids()
 {
-	setNoOfAsteroids();
 	setAsteroidType();
 	for (int i = 0; i < MAX_ASTEROIDS; i++)
 	{
@@ -245,19 +237,19 @@ void Level::updateAsteroids()
 
 void Level::drawAsteroids(sf::RenderWindow & window)
 {
-	for (int i = 0; i < m_noOfLarge; i++)
+	for (int i = 0; i < MAX_ASTEROIDS; i++)
 	{
 		largeAsteroids[i].render(window);
 	}
-	for (int i = 0; i < m_noOfMed; i++)
+	for (int i = 0; i < MAX_ASTEROIDS + 4; i++)
 	{
 		medAsteroids[i].render(window);
 	}
-	for (int i = 0; i < m_noOfSmall; i++)
+	for (int i = 0; i < MAX_ASTEROIDS + 14; i++)
 	{
 		smallAsteroids[i].render(window);
 	}
-	for (int i = 0; i < m_noOfTiny; i++)
+	for (int i = 0; i < MAX_ASTEROIDS +34; i++)
 	{
 		tinyAsteroids[i].render(window);
 	}

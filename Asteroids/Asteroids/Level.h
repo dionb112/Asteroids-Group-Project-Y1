@@ -21,10 +21,7 @@ private:
 	Gems gems;
 	Pirate pirate;
 	LevelData levelData[5];
-	int m_noOfLarge;
-	int m_noOfMed;
-	int m_noOfSmall;
-	int m_noOfTiny;
+
 	int m_counter;
 	int m_prevBehaviour;
 public:
@@ -50,7 +47,6 @@ public:
 	void render(sf::RenderWindow &window);
 	void drawAsteroids(sf::RenderWindow &window);
 
-	void setNoOfAsteroids();
 	void setAsteroidType();
 	void initAsteroids();
 	void updateAsteroids();
