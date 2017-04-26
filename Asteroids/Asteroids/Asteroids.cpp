@@ -128,7 +128,7 @@ void Asteroids::init()
 
 void Asteroids::render(sf::RenderWindow & window)
 {
-	//if (m_isActive)
+	if (m_isActive)
 	{
 		switch (m_type)
 		{
@@ -154,7 +154,7 @@ void Asteroids::render(sf::RenderWindow & window)
 
 void Asteroids::update()
 {
-	//if (m_isActive)
+	if (m_isActive)
 	{
 		movement();
 		screenWrap();
