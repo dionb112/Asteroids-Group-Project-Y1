@@ -146,7 +146,7 @@ void Game::processLevelSelectEvents()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
 		level.levelSetup(0);
-		//currScreen = MenuScreen::Level;
+		currScreen = MenuScreen::Level;
 		m_menuDelay = DELAY;
 	}
 }
@@ -222,38 +222,6 @@ void Game::processLevelEvents()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		level.rotatePlayer(false);
-	}
-	//Testing add and remove before collisions
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
-	{
-		level.deleteLarge();
-		level.addMed();
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
-	{
-		level.deleteMed();
-		level.addSmall();
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
-	{
-		level.deleteSmall();
-		level.addTiny();
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
-	{
-		level.deleteTiny();
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num6))
-	{
-		level.addMed();
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num7))
-	{
-		level.addSmall();
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num8))
-	{
-		level.addTiny();
 	}
 }
 

@@ -81,7 +81,6 @@ void Asteroids::spawnAsteroids()
 	double x = rand() % (SCR_W + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
 	double y = rand() % (SCR_H + OFF_SCR_OFFSET * 2) - OFF_SCR_OFFSET;
 	m_position = MyVector3D(x, y, 0);
-	m_isActive = true;
 }
 
 void Asteroids::setupType(int type)
