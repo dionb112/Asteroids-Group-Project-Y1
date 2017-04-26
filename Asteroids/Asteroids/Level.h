@@ -54,14 +54,10 @@ public:
 	void setAsteroidType();
 	void initAsteroids();
 	void updateAsteroids();
-	void deleteLarge();
-	void deleteMed();
-	void deleteSmall();
-	void deleteTiny();
 	void addMed();
 	void addSmall();
 	void addTiny();
-	void spawnGem();
+	void spawnGem(int deadTiny);
 
 	void collisions();
 	void playerCollisions();
