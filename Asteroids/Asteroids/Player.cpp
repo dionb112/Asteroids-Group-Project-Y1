@@ -141,6 +141,11 @@ void Player::fuelUp()
 	std::cout << "Fuel: " << m_fuelLevel << std::endl;
 }
 
+void Player::collectGem()
+{
+	m_credits += 500;
+}
+
 void Player::render(sf::RenderWindow & window)
 {
 	m_playerSprite.setPosition(m_position);

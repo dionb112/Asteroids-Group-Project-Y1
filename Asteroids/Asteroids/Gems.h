@@ -9,7 +9,7 @@ class Gems
 	sf::Texture m_texture;
 	sf::Sprite m_bodies[5];
 
-	bool isAlive[5];
+	bool m_isAlive[5];
 	int m_radius;
 
 public:
@@ -23,5 +23,6 @@ public:
 	MyVector3D getPos(int index);
 	int getRadius();
 	void reset();
-
+	void setPosition(MyVector3D newPos, int index);
+	bool getAlive(int index);
 };

@@ -9,8 +9,8 @@ void Level::init()
 	m_prevBehaviour = 0;
 
 	//for testing stuff easier
-	levelData[0].largeAst	= 0;
-	levelData[0].medAst		= 0;
+	levelData[0].largeAst	= 1;
+	levelData[0].medAst		= 1;
 	levelData[0].smallAst	= 1;
 	levelData[0].tinyAst	= 1;
 
@@ -286,6 +286,7 @@ void Level::spawnGem(int deadTiny)
 		{
 			index = 3;
 		}
+
 		gems.spawn(index, tinyAsteroids[deadTiny].getPos());//spawn that gem
 	}
 
@@ -337,12 +338,14 @@ void Level::playerCollisions()
 
 		}
 	}		
-	
+	//gem collision
 	for (int i = 0; i < 5; i++)
 	{
 		if (isColliding(player.getPos(), player.getRadius(), gems.getPos(i), gems.getRadius()))
 		{
 			std::cout << "hit a gem" << std::endl;
+			player.collectGem();
+			gems.setPosition(MyVector3D{ -OFF_SCR_OFFSET * 2,-OFF_SCR_OFFSET * 2, 0 }, i);	
 		}
 	}
 }

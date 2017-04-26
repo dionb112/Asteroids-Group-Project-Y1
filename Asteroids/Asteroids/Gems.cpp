@@ -4,7 +4,7 @@ Gems::Gems()
 {
 	for (int i = 0; i < 5; i++)
 	{
-		isAlive[i] == false;
+		m_isAlive[i] == false;
 	}
 	m_radius = 16;
 }
@@ -58,7 +58,7 @@ void Gems::render(sf::RenderWindow &window)
 {
 	for (int i = 0; i < 5; i++)
 	{
-		if (isAlive[i])
+		if (m_isAlive[i])
 		{
 			window.draw(m_bodies[i]);
 		}
@@ -74,7 +74,7 @@ void Gems::spawn(int index, sf::Vector2f deadAsteroidPos)
 	loadContent(index);
 	init(index);
 	m_bodies[index].setPosition(deadAsteroidPos);
-	isAlive[index] = true;
+	m_isAlive[index] = true;
 
 }
 
@@ -82,7 +82,7 @@ void Gems::rotate()
 {
 	for (int i = 0; i < 5; i++)
 	{
-		if (isAlive[i])
+		if (m_isAlive[i])
 		{
 			m_bodies[i].rotate(1);
 		}
@@ -103,4 +103,14 @@ int Gems::getRadius()
 void Gems::reset()
 {
 	//
+}
+
+void Gems::setPosition(MyVector3D newPos, int index)
+{
+	m_bodies[index].setPosition(newPos);
+}
+
+bool Gems::getAlive(int index)
+{
+	return m_isAlive[index];
 }

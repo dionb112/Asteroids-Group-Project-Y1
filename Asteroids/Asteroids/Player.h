@@ -36,6 +36,7 @@ public:
 	void shieldUp();
 	void fuelUp();
 
+	void collectGem();
 private:
 
 	sf::Texture m_playerTexture;
@@ -67,4 +68,6 @@ private:
 	int m_fireRate;
 	int m_boostLevel;
 	int m_armourLevel;
+
+	int m_credits;
 };
