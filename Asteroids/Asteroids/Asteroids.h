@@ -38,6 +38,7 @@ public:
 	void setupType(int type);
 	void movement();
 	void screenWrap();
+	void init();
 	MyVector3D getPos();
 	void setPos(MyVector3D newPos);
 	int getRadius();

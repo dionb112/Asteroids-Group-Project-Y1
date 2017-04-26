@@ -123,7 +123,7 @@ void Asteroids::setupType(int type)
 
 void Asteroids::render(sf::RenderWindow & window)
 {
-	//if (m_isActive)
+	if (m_isActive)
 	{
 		switch (m_type)
 		{
@@ -149,7 +149,7 @@ void Asteroids::render(sf::RenderWindow & window)
 
 void Asteroids::update()
 {
-	//if (m_isActive)
+	if (m_isActive)
 	{
 		movement();
 		screenWrap();
@@ -179,6 +179,10 @@ void Asteroids::screenWrap()
 	{
 		m_position = MyVector3D(m_position.X(), -OFF_SCR_OFFSET * 2, 0);
 	}
+}
+
+void Asteroids::init()
+{
 }
 
 MyVector3D Asteroids::getPos()

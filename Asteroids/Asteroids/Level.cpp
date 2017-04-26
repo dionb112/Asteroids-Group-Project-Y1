@@ -201,26 +201,43 @@ void Level::setAsteroidType()
 		smallAsteroids[i].setupType(3);
 		tinyAsteroids[i].setupType(4);
 	}
+	
 }
 
+void Level::initAsteroids()
+{
+	setAsteroidType();
+}
 
 void Level::updateAsteroids()
 {
 	for (int i = 0; i < MAX_ASTEROIDS; i++)
 	{
-		largeAsteroids[i].update();
+		if (largeAsteroids[i].getActive())
+		{
+			largeAsteroids[i].update();
+		}
 	}
 	for (int i = 0; i < MAX_ASTEROIDS + 4; i++)
 	{
-		medAsteroids[i].update();
+		if (medAsteroids[i].getActive())
+		{
+			medAsteroids[i].update();
+		}
 	}
 	for (int i = 0; i < MAX_ASTEROIDS + 14; i++)
 	{
-		smallAsteroids[i].update();
+		if (smallAsteroids[i].getActive())
+		{
+			smallAsteroids[i].update();
+		}
 	}
 	for (int i = 0; i < MAX_ASTEROIDS + 34; i++)
 	{
-		tinyAsteroids[i].update();
+		if (tinyAsteroids[i].getActive())
+		{
+			tinyAsteroids[i].update();
+		}
 	}
 }
 
@@ -294,7 +311,7 @@ void Level::playerCollisions()
 {
 	for (int i = 0; i < 2; i++)
 	{
-		if (isColliding(player.getPos(), player.getRadius(), largeAsteroids[i].getPos(), largeAsteroids[i].getRadius()))
+		if (isColliding(player.getPos(), player.getRadius(), largeAsteroids[i].getPos(), largeAsteroids[i].getRadius()) && largeAsteroids[i].getActive())
 		{
 			std::cout << "player hit large asteroid" << std::endl;
 
@@ -302,7 +319,7 @@ void Level::playerCollisions()
 	}
 	for (int i = 0; i < 6; i++)
 	{
-		if (isColliding(player.getPos(), player.getRadius(), medAsteroids[i].getPos(), medAsteroids[i].getRadius()))
+		if (isColliding(player.getPos(), player.getRadius(), medAsteroids[i].getPos(), medAsteroids[i].getRadius()) && medAsteroids[i].getActive())
 		{
 			std::cout << "player hit med asteroid" << std::endl;
 
@@ -310,7 +327,7 @@ void Level::playerCollisions()
 	}
 	for (int i = 0; i < 16; i++)
 	{
-		if (isColliding(player.getPos(), player.getRadius(), smallAsteroids[i].getPos(), smallAsteroids[i].getRadius()))
+		if (isColliding(player.getPos(), player.getRadius(), smallAsteroids[i].getPos(), smallAsteroids[i].getRadius()) && smallAsteroids[i].getActive())
 		{
 			std::cout << "player hit small asteroid" << std::endl;
 
@@ -318,7 +335,7 @@ void Level::playerCollisions()
 	}
 	for (int i = 0; i < 36; i++)
 	{
-		if (isColliding(player.getPos(), player.getRadius(), tinyAsteroids[i].getPos(), tinyAsteroids[i].getRadius()))
+		if (isColliding(player.getPos(), player.getRadius(), tinyAsteroids[i].getPos(), tinyAsteroids[i].getRadius()) && tinyAsteroids[i].getActive())
 		{
 			std::cout << "player hit tiny asteroid" << std::endl;
 
@@ -339,7 +356,7 @@ void Level::bulletCollsions()
 {
 	for (int i = 0; i < 2; i++)
 	{
-		if (isColliding(playerBullet.getPos(), player.getRadius(), largeAsteroids[i].getPos(), largeAsteroids[i].getRadius()))
+		if (isColliding(playerBullet.getPos(), player.getRadius(), largeAsteroids[i].getPos(), largeAsteroids[i].getRadius()) && largeAsteroids[i].getActive())
 		{
 			std::cout << "bullet hit Large" << std::endl;
 			largeAsteroids[i].setActive(false);
@@ -349,7 +366,7 @@ void Level::bulletCollsions()
 	}
 	for (int i = 0; i < 6; i++)
 	{
-		if (isColliding(playerBullet.getPos(), player.getRadius(), medAsteroids[i].getPos(), medAsteroids[i].getRadius()))
+		if (isColliding(playerBullet.getPos(), player.getRadius(), medAsteroids[i].getPos(), medAsteroids[i].getRadius()) && medAsteroids[i].getActive())
 		{
 			std::cout << "bullet hit med" << std::endl;
 			medAsteroids[i].setActive(false);
@@ -359,7 +376,7 @@ void Level::bulletCollsions()
 	}
 	for (int i = 0; i < 16; i++)
 	{
-		if (isColliding(playerBullet.getPos(), player.getRadius(), smallAsteroids[i].getPos(), smallAsteroids[i].getRadius()))
+		if (isColliding(playerBullet.getPos(), player.getRadius(), smallAsteroids[i].getPos(), smallAsteroids[i].getRadius()) && smallAsteroids[i].getActive())
 		{
 			std::cout << "bullet hit small" << std::endl;
 			smallAsteroids[i].setActive(false);
@@ -369,7 +386,7 @@ void Level::bulletCollsions()
 	}
 	for (int i = 0; i < 36; i++)
 	{
-		if (isColliding(playerBullet.getPos(), player.getRadius(), tinyAsteroids[i].getPos(), tinyAsteroids[i].getRadius()))
+		if (isColliding(playerBullet.getPos(), player.getRadius(), tinyAsteroids[i].getPos(), tinyAsteroids[i].getRadius()) && tinyAsteroids[i].getActive())
 		{
 			std::cout << "bullet hit tiny" << std::endl;
 			tinyAsteroids[i].setActive(false);
