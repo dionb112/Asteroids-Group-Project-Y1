@@ -7,6 +7,31 @@ void Level::init()
 	pirate.init();
 	m_counter = 0;
 	m_prevBehaviour = 0;
+
+	levelData[0].largeAst	= 0;
+	levelData[0].medAst		= 0;
+	levelData[0].smallAst	= 1;
+	levelData[0].tinyAst	= 1;
+
+	levelData[1].largeAst	= 0;
+	levelData[1].medAst		= 2;
+	levelData[1].smallAst	= 1;
+	levelData[1].tinyAst	= 1;
+
+	levelData[2].largeAst	= 1;
+	levelData[2].medAst		= 1;
+	levelData[2].smallAst	= 2;
+	levelData[2].tinyAst	= 0;
+
+	levelData[3].largeAst	= 1;
+	levelData[3].medAst		= 2;
+	levelData[3].smallAst	= 2;
+	levelData[3].tinyAst	= 1;
+
+	levelData[4].largeAst	= 2;
+	levelData[4].medAst		= 2;
+	levelData[4].smallAst	= 2;
+	levelData[4].tinyAst	= 2;
 }
 
 void Level::update()
@@ -116,9 +141,53 @@ void Level::fuelUp()
 	player.fuelUp();
 }
 
-void Level::levelSetup()
+void Level::levelSetup(int currLevel)
 {
 	player.reset();
+	//reset pirate
+	//resetGems
+	asteroidsSetup(currLevel);
+	playerBullet.setActive(false);
+	enemyBullet.setActive(false);
+}
+
+void Level::asteroidsSetup(int currLevel)
+{
+	//These first 4 for loops reset all of the asteroid arrays to false so that we can set up the level with the last 4 for loops
+	for (int i = 0; i < 2; i++)
+	{
+		//set all large asteroids to inactive
+	}
+	for (int i = 0; i < 6; i++)
+	{
+		//set all med asteroids to inactive
+	}
+	for (int i = 0; i < 16; i++)
+	{
+		//set all small asteroids to inactive
+	}
+	for (int i = 0; i < 36; i++)
+	{
+		//set all tiny asteroids to inactive
+	}
+
+	//These 4 for loops set up the level with the amount of asteroids it needs
+	for (int i = 0; i < levelData[currLevel].largeAst; i++)
+	{
+		//set large asteroids to active
+	}
+	for (int i = 0; i < levelData[currLevel].medAst; i++)
+	{
+		//set med asteroids to active
+	}
+	for (int i = 0; i < levelData[currLevel].smallAst; i++)
+	{
+		//set small asteroids to active
+	}
+	for (int i = 0; i < levelData[currLevel].tinyAst; i++)
+	{
+		//set tiny asteroids to active
+	}
 }
 
 

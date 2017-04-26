@@ -21,6 +21,7 @@ void Game::init()
 {
 	currScreen = (MenuScreen::MainMenu);
 	m_licenseTime = 0; //set back to 260 when finished
+	m_menuDelay = 0;
 	license.init(m_font);
 	splash.init(m_font);
 	mainMenu.init(m_font);
@@ -62,25 +63,40 @@ void Game::processEvents()
 				m_window.close();
 			}
 		}
-		if (currScreen == MenuScreen::Splash)
+		if (m_menuDelay <= 0)
 		{
-			processSplashEvents();
+			if (currScreen == MenuScreen::Splash)
+			{
+				processSplashEvents();
+			}
 		}
-		if (currScreen == MenuScreen::MainMenu)
+		if (m_menuDelay <= 0)
 		{
-			processMainMenuEvents();
+			if (currScreen == MenuScreen::MainMenu)
+			{
+				processMainMenuEvents();
+			}
 		}
-		if (currScreen == MenuScreen::LevelSelect)
+		if (m_menuDelay <= 0)
 		{
-			processLevelSelectEvents();
+			if (currScreen == MenuScreen::LevelSelect)
+			{
+				processLevelSelectEvents();
+			}
 		}
-		if (currScreen == MenuScreen::Help)
+		if (m_menuDelay <= 0)
 		{
-			processHelpEvents();
+			if (currScreen == MenuScreen::Help)
+			{
+				processHelpEvents();
+			}
 		}
-		if (currScreen == MenuScreen::Upgrade)
+		if (m_menuDelay <= 0)
 		{
-			processUpgradeEvents();
+			if (currScreen == MenuScreen::Upgrade)
+			{
+				processUpgradeEvents();
+			}
 		}
 	}
 	
@@ -95,6 +111,7 @@ void Game::processSplashEvents()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		currScreen = MenuScreen::MainMenu;
+		m_menuDelay = DELAY;
 	}
 }
 
@@ -103,16 +120,19 @@ void Game::processMainMenuEvents()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
 		currScreen = MenuScreen::LevelSelect;
+		m_menuDelay = DELAY;
 	}
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
 		currScreen = MenuScreen::Upgrade;
+		m_menuDelay = DELAY;
 	}
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 	{
 		currScreen = MenuScreen::Help;
+		m_menuDelay = DELAY;
 	}
 }
 
@@ -121,11 +141,13 @@ void Game::processLevelSelectEvents()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		currScreen = MenuScreen::MainMenu;
+		m_menuDelay = DELAY;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
-		level.levelSetup();
-		currScreen = MenuScreen::Level;
+		level.levelSetup(0);
+		//currScreen = MenuScreen::Level;
+		m_menuDelay = DELAY;
 	}
 }
 
@@ -134,6 +156,7 @@ void Game::processHelpEvents()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		currScreen = MenuScreen::MainMenu;
+		m_menuDelay = DELAY;
 	}
 }
 
@@ -142,36 +165,43 @@ void Game::processUpgradeEvents()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		currScreen = MenuScreen::MainMenu;
+		m_menuDelay = DELAY;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
 		level.fireUp();
+		m_menuDelay = DELAY;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
 		level.boostUp();
+		m_menuDelay = DELAY;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 	{
 		level.armourUp();
+		m_menuDelay = DELAY;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
 	{
 		level.capacityUp();
+		m_menuDelay = DELAY;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
 	{
 		level.shieldUp();
+		m_menuDelay = DELAY;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num6))
 	{
 		level.fuelUp();
+		m_menuDelay = DELAY;
 	}
 }
 
@@ -232,10 +262,17 @@ void Game::update()
 	if (currScreen == MenuScreen::License)
 	{
 		m_licenseTime--;
+
 		if (m_licenseTime <= 0)
 		{
 			currScreen = MenuScreen::Splash;
 		}
+	}
+	
+	m_menuDelay--;
+	if (m_menuDelay < 0)
+	{
+		m_menuDelay = 0;
 	}
 
 	if (currScreen == MenuScreen::Level)

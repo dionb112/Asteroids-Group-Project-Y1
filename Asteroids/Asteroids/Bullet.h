@@ -15,6 +15,7 @@ public:
 	MyVector3D getPos();
 	int getRadius();
 	bool getActive();
+	void setActive(bool active);
 	void update();
 	void screenWrap();
 	void render(sf::RenderWindow &window);
