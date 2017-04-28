@@ -31,7 +31,7 @@ public:
 	void movePlayer();
 	void rotatePlayer(bool rotateLeft);
 	void actionManager();
-	void enemyShoot();	//Update when pirate use MyVectors
+	void enemyShoot();
 	void playerShoot();
 
 	void fireUp();
@@ -63,7 +63,7 @@ public:
 
 	void collisions();
 	void playerCollisions();
-	void bulletCollsions(); //Update when gems use MyVectors
+	void bulletCollsions();
 	void pirateCollsions();
 	bool isColliding(MyVector3D pos1, int rad1, MyVector3D pos2, int rad2);
 };

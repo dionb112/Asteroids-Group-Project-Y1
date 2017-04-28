@@ -341,7 +341,10 @@ void Level::playerCollisions()
 		if (isColliding(player.getPos(), player.getRadius(), largeAsteroids[i].getPos(), largeAsteroids[i].getRadius()) && largeAsteroids[i].getActive())
 		{
 			std::cout << "player hit large asteroid" << std::endl;
-
+			if (!player.isDead())
+			{
+				player.killPlayer();
+			}
 		}
 	}
 	for (int i = 0; i < 6; i++)
@@ -349,7 +352,10 @@ void Level::playerCollisions()
 		if (isColliding(player.getPos(), player.getRadius(), medAsteroids[i].getPos(), medAsteroids[i].getRadius()) && medAsteroids[i].getActive())
 		{
 			std::cout << "player hit med asteroid" << std::endl;
-
+			if (!player.isDead())
+			{
+				player.killPlayer();
+			}
 		}
 	}
 	for (int i = 0; i < 16; i++)
@@ -357,7 +363,10 @@ void Level::playerCollisions()
 		if (isColliding(player.getPos(), player.getRadius(), smallAsteroids[i].getPos(), smallAsteroids[i].getRadius()) && smallAsteroids[i].getActive())
 		{
 			std::cout << "player hit small asteroid" << std::endl;
-
+			if (!player.isDead())
+			{
+				player.killPlayer();
+			}
 		}
 	}
 	for (int i = 0; i < 36; i++)
@@ -365,7 +374,10 @@ void Level::playerCollisions()
 		if (isColliding(player.getPos(), player.getRadius(), tinyAsteroids[i].getPos(), tinyAsteroids[i].getRadius()) && tinyAsteroids[i].getActive())
 		{
 			std::cout << "player hit tiny asteroid" << std::endl;
-
+			if (!player.isDead())
+			{
+				player.killPlayer();
+			}
 		}
 	}		
 	//gem collision
@@ -442,15 +454,11 @@ void Level::bulletCollsions()
 			}
 		}
 	}
-	
-	
-	
-	
 }
 
 void Level::pirateCollsions()
 {
-
+	//Pirate needs radius
 }
 
 bool Level::isColliding(MyVector3D pos1, int rad1, MyVector3D pos2, int rad2)

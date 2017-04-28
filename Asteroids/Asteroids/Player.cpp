@@ -22,6 +22,9 @@ void Player::init()
 	m_playerRect.left = 0;
 	m_playerSprite.setTextureRect(m_playerRect);
 
+	m_deathSplosion.setRadius(0);
+	m_deathSplosion.setFillColor(sf::Color::Red);
+
 	m_playerSprite.setOrigin(32, 32);
 	m_position = MyVector3D(400, 240, 0);
 
@@ -42,14 +45,25 @@ void Player::init()
 	m_fuelLevel = 1;
 
 	m_credits = 10000;
+
+	m_dead = false;
 }
 
 void Player::update()
 {
-	m_position += m_velocity;
-	friction();
-	animate();
-	screenWrap();
+	if (!m_dead)
+	{
+		m_position += m_velocity;
+		friction();
+		animate();
+		screenWrap();
+	}
+	if (m_dead && m_deathSplosionSize < 100)
+	{
+		m_deathSplosionSize++;
+		m_deathSplosion.setRadius(m_deathSplosionSize);
+		m_deathSplosion.setOrigin(m_deathSplosionSize, m_deathSplosionSize);
+	}
 }
 
 void Player::friction()
@@ -181,12 +195,31 @@ int Player::getCredits()
 	return m_credits;
 }
 
+bool Player::isDead()
+{
+	return m_dead;
+}
+
+void Player::killPlayer()
+{
+	m_dead = true;
+	m_deathSplosion.setPosition(m_position);
+	m_deathSplosionSize = 0;
+}
+
 
 
 void Player::render(sf::RenderWindow & window)
 {
-	m_playerSprite.setPosition(m_position);
-	window.draw(m_playerSprite);
+	if (!m_dead)
+	{
+		m_playerSprite.setPosition(m_position);
+		window.draw(m_playerSprite);
+	}
+	if (m_dead && m_deathSplosionSize < 100)
+	{
+		window.draw(m_deathSplosion);
+	}
 }
 
 MyVector3D Player::getPos()
@@ -205,6 +238,7 @@ void Player::reset()
 	m_acceleration = m_boostLevel * 0.1;
 	m_fuel = 300 + m_fuelLevel * 50;
 	m_currHold = 0;
+	m_dead = false;
 }
 
 void Player::move()

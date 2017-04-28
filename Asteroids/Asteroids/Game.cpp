@@ -57,9 +57,13 @@ void Game::processEvents()
 	sf::Event event;
 	while (m_window.pollEvent(event))
 	{
-		if (currScreen != MenuScreen::License)
+		if (sf::Event::Closed == event.type)
+		{
+			m_window.close();
+		}
+		if (currScreen != MenuScreen::License && currScreen != MenuScreen::Level)
 		{ 
-			if (sf::Event::Closed == event.type || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && m_menuDelay <= 0)
 			{
 				m_window.close();
 			}
@@ -280,6 +284,11 @@ void Game::processLevelEvents()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		level.rotatePlayer(false);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		currScreen = MenuScreen::MainMenu;
+		m_menuDelay = DELAY;
 	}
 }
 

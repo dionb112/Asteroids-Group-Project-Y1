@@ -46,11 +46,15 @@ public:
 
 	void addCredits(int amount);
 	int getCredits();
+
+	bool isDead();
+	void killPlayer();
 private:
 
 	sf::Texture m_playerTexture;
 	sf::Sprite m_playerSprite;
 	sf::IntRect m_playerRect;
+	sf::CircleShape m_deathSplosion;
 
 	double m_rotation;
 	double m_turnRate;
@@ -78,4 +82,7 @@ private:
 	int m_armourLevel;
 
 	int m_credits;
+
+	bool m_dead;
+	int m_deathSplosionSize;
 };
