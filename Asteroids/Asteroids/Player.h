@@ -36,7 +36,18 @@ public:
 	void shieldUp();
 	void fuelUp();
 
-	void collectGem();
+	int getFireLevel();
+	int getBoostLevel();
+	int getArmourLevel();
+	int getCapacityLevel();
+	int getShieldLevel();
+	int getFuelLevel();
+
+	int getHold();
+	void addHold();
+
+	void addCredits(int amount);
+	int getCredits();
 private:
 
 	sf::Texture m_playerTexture;
@@ -59,6 +70,7 @@ private:
 	double m_acceleration;
 	int m_shields;
 	int m_fuel;
+	int m_currHold;
 
 
 	//player upgradable stats

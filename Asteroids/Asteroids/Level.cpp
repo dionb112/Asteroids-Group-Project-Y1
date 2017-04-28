@@ -344,8 +344,12 @@ void Level::playerCollisions()
 		if (isColliding(player.getPos(), player.getRadius(), gems.getPos(i), gems.getRadius()))
 		{
 			std::cout << "hit a gem" << std::endl;
-			player.collectGem();
-			gems.setPosition(MyVector3D{ -OFF_SCR_OFFSET * 2,-OFF_SCR_OFFSET * 2, 0 }, i);	
+			if (player.getHold() <= player.getCapacityLevel() + 3)
+			{
+				player.addHold();
+				player.addCredits(500);
+				gems.setPosition(MyVector3D{ -OFF_SCR_OFFSET * 2,-OFF_SCR_OFFSET * 2, 0 }, i);
+			}
 		}
 	}
 }

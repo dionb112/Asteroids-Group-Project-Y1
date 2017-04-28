@@ -41,6 +41,8 @@ void Player::init()
 	m_capacityLevel = 1;
 	m_fuelLevel = 1;
 	m_shieldLevel = 1;
+
+	m_credits = 0;
 }
 
 void Player::update()
@@ -141,10 +143,57 @@ void Player::fuelUp()
 	std::cout << "Fuel: " << m_fuelLevel << std::endl;
 }
 
-void Player::collectGem()
+int Player::getFireLevel()
 {
-	m_credits += 500;
+	return m_fireRate;
 }
+
+int Player::getBoostLevel()
+{
+	return m_boostLevel;
+}
+
+int Player::getArmourLevel()
+{
+	return m_armourLevel;
+}
+
+int Player::getCapacityLevel()
+{
+	return m_capacityLevel;
+}
+
+int Player::getShieldLevel()
+{
+	return m_shieldLevel;
+}
+
+int Player::getFuelLevel()
+{
+	return m_fuelLevel;
+}
+
+int Player::getHold()
+{
+	return m_currHold;
+}
+
+void Player::addHold()
+{
+	m_currHold++;
+}
+
+void Player::addCredits(int amount)
+{
+	m_credits += amount;
+}
+
+int Player::getCredits()
+{
+	return m_credits;
+}
+
+
 
 void Player::render(sf::RenderWindow & window)
 {
@@ -167,6 +216,7 @@ void Player::reset()
 	m_position = MyVector3D(SCR_W / 2, SCR_H / 2, 0);
 	m_acceleration = m_boostLevel * 0.1;
 	m_fuel = 300 + m_fuelLevel * 50;
+	m_currHold = 0;
 }
 
 void Player::move()
