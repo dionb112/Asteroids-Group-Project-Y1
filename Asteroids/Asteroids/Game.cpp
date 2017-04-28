@@ -19,8 +19,8 @@ void Game::loadContent()
 
 void Game::init()
 {
-	currScreen = (MenuScreen::MainMenu);
-	m_licenseTime = 0; //set back to 260 when finished
+	currScreen = (MenuScreen::License);
+	m_licenseTime = 120; //set back to 260 when finished
 	m_menuDelay = 0;
 	license.init(m_font);
 	splash.init(m_font);
@@ -29,6 +29,7 @@ void Game::init()
 	help.init(m_font);
 	upgrade.init(m_font);
 	level.init();
+	m_levelSelect = -1;
 }
 
 void Game::run()
@@ -141,37 +142,43 @@ void Game::processLevelSelectEvents()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		currScreen = MenuScreen::MainMenu;
+		m_levelSelect = -1;
+		levelSelect.setPlanet(m_levelSelect);
 		m_menuDelay = DELAY;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+	{
+		if (m_levelSelect != -1)
+		{
+			level.levelSetup(m_levelSelect);
+			currScreen = MenuScreen::Level;
+			m_menuDelay = DELAY;
+		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
-		level.levelSetup(0);
-		currScreen = MenuScreen::Level;
-		m_menuDelay = DELAY;
+		m_levelSelect = 0;
+		levelSelect.setPlanet(m_levelSelect);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
-		level.levelSetup(1);
-		currScreen = MenuScreen::Level;
-		m_menuDelay = DELAY;
+		m_levelSelect = 1;
+		levelSelect.setPlanet(m_levelSelect);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
 	{
-		level.levelSetup(2);
-		currScreen = MenuScreen::Level;
-		m_menuDelay = DELAY;
+		m_levelSelect = 2;
+		levelSelect.setPlanet(m_levelSelect);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
 	{
-		level.levelSetup(3);
-		currScreen = MenuScreen::Level;
-		m_menuDelay = DELAY;
+		m_levelSelect = 3;
+		levelSelect.setPlanet(m_levelSelect);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
 	{
-		level.levelSetup(4);
-		currScreen = MenuScreen::Level;
-		m_menuDelay = DELAY;
+		m_levelSelect = 4;
+		levelSelect.setPlanet(m_levelSelect);
 	}
 }
 

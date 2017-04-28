@@ -64,6 +64,7 @@ private:
 	Upgrade upgrade;
 	Level level;
 
+	int m_levelSelect;
 };
 
 
