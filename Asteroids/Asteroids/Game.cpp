@@ -127,6 +127,16 @@ void Game::processMainMenuEvents()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
 		currScreen = MenuScreen::Upgrade;
+
+		upgrade.updateCredits(level.getCredits());
+		upgrade.updateCost(getCost());
+		upgrade.updateArmour(level.getArmourLevel());
+		upgrade.updateBoost(level.getBoostLevel());
+		upgrade.updateCapacity(level.getCapacityLevel());
+		upgrade.updateFire(level.getFireLevel());
+		upgrade.updateFuel(level.getFuelLevel());
+
+
 		m_menuDelay = DELAY;
 	}
 	
@@ -199,40 +209,57 @@ void Game::processUpgradeEvents()
 		m_menuDelay = DELAY;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+	if (getCost() <= level.getCredits())
 	{
-		level.fireUp();
-		m_menuDelay = DELAY;
-	}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+		{
+			level.addCredits(-getCost());
+			level.fireUp();
+			upgrade.updateCredits(level.getCredits());
+			upgrade.updateFire(level.getFireLevel());
+			upgrade.updateCost(getCost());
+			m_menuDelay = DELAY;
+		}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
-	{
-		level.boostUp();
-		m_menuDelay = DELAY;
-	}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+		{
+			level.addCredits(-getCost());
+			upgrade.updateCredits(level.getCredits());
+			level.boostUp();
+			upgrade.updateBoost(level.getBoostLevel());
+			upgrade.updateCost(getCost());
+			m_menuDelay = DELAY;
+		}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
-	{
-		level.armourUp();
-		m_menuDelay = DELAY;
-	}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+		{
+			level.addCredits(-getCost());
+			upgrade.updateCredits(level.getCredits());
+			level.armourUp();
+			upgrade.updateArmour(level.getArmourLevel());
+			upgrade.updateCost(getCost());
+			m_menuDelay = DELAY;
+		}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
-	{
-		level.capacityUp();
-		m_menuDelay = DELAY;
-	}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
+		{
+			level.addCredits(-getCost());
+			upgrade.updateCredits(level.getCredits());
+			level.capacityUp();
+			upgrade.updateCapacity(level.getCapacityLevel());
+			upgrade.updateCost(getCost());
+			m_menuDelay = DELAY;
+		}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
-	{
-		level.shieldUp();
-		m_menuDelay = DELAY;
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num6))
-	{
-		level.fuelUp();
-		m_menuDelay = DELAY;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
+		{
+			level.addCredits(-getCost());
+			upgrade.updateCredits(level.getCredits());
+			level.fuelUp();
+			upgrade.updateFuel(level.getFuelLevel());
+			upgrade.updateCost(getCost());
+			m_menuDelay = DELAY;
+		}
 	}
 }
 
@@ -254,6 +281,22 @@ void Game::processLevelEvents()
 	{
 		level.rotatePlayer(false);
 	}
+}
+
+int Game::getCost()
+{
+	int cost = 0;
+
+	cost += level.getArmourLevel();
+	cost += level.getBoostLevel();
+	cost += level.getCapacityLevel();
+	cost += level.getFireLevel();
+	cost += level.getFuelLevel();
+	cost -= 5;
+	cost *= 500;
+	cost += 1000;
+
+	return cost;
 }
 
 void Game::update()

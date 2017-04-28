@@ -38,8 +38,15 @@ public:
 	void boostUp();
 	void armourUp();
 	void capacityUp();
-	void shieldUp();
 	void fuelUp();
+
+	void addCredits(int amount);
+	int getCredits();
+	int getFireLevel();
+	int getBoostLevel();
+	int getArmourLevel();
+	int getCapacityLevel();
+	int getFuelLevel();
 
 	void levelSetup(int currLevel);
 	void asteroidsSetup(int currLevel);

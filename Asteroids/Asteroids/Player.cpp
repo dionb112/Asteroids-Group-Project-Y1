@@ -40,9 +40,8 @@ void Player::init()
 	m_armourLevel = 1;
 	m_capacityLevel = 1;
 	m_fuelLevel = 1;
-	m_shieldLevel = 1;
 
-	m_credits = 0;
+	m_credits = 10000;
 }
 
 void Player::update()
@@ -131,12 +130,6 @@ void Player::capacityUp()
 	std::cout << "Capacity: " << m_capacityLevel << std::endl;
 }
 
-void Player::shieldUp()
-{
-	m_shieldLevel++;
-	std::cout << "shield: " << m_shieldLevel << std::endl;
-}
-
 void Player::fuelUp()
 {
 	m_fuelLevel++;
@@ -161,11 +154,6 @@ int Player::getArmourLevel()
 int Player::getCapacityLevel()
 {
 	return m_capacityLevel;
-}
-
-int Player::getShieldLevel()
-{
-	return m_shieldLevel;
 }
 
 int Player::getFuelLevel()

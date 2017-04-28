@@ -47,6 +47,8 @@ private:
 	void processUpgradeEvents();
 	void processLevelEvents();
 
+	int getCost();
+
 	void render();
 
 	sf::RenderWindow m_window;

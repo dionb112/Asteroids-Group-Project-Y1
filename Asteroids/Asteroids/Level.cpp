@@ -132,14 +132,44 @@ void Level::capacityUp()
 	player.capacityUp();
 }
 
-void Level::shieldUp()
-{
-	player.shieldUp();
-}
-
 void Level::fuelUp()
 {
 	player.fuelUp();
+}
+
+void Level::addCredits(int amount)
+{
+	player.addCredits(amount);
+}
+
+int Level::getCredits()
+{
+	return player.getCredits();
+}
+
+int Level::getFireLevel()
+{
+	return player.getFireLevel();
+}
+
+int Level::getBoostLevel()
+{
+	return player.getBoostLevel();
+}
+
+int Level::getArmourLevel()
+{
+	return player.getArmourLevel();
+}
+
+int Level::getCapacityLevel()
+{
+	return player.getCapacityLevel();
+}
+
+int Level::getFuelLevel()
+{
+	return player.getFuelLevel();
 }
 
 void Level::levelSetup(int currLevel)

@@ -33,14 +33,12 @@ public:
 	void boostUp();
 	void armourUp();
 	void capacityUp();
-	void shieldUp();
 	void fuelUp();
 
 	int getFireLevel();
 	int getBoostLevel();
 	int getArmourLevel();
 	int getCapacityLevel();
-	int getShieldLevel();
 	int getFuelLevel();
 
 	int getHold();
@@ -68,14 +66,12 @@ private:
 
 	//Current stats for level
 	double m_acceleration;
-	int m_shields;
 	int m_fuel;
 	int m_currHold;
 
 
 	//player upgradable stats
 	int m_capacityLevel;
-	int m_shieldLevel;
 	int m_fuelLevel;
 	int m_fireRate;
 	int m_boostLevel;
